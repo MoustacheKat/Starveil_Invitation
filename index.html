@@ -1273,7 +1273,7 @@ body:has(.passage.crt) .crash-text.crash-large {
 		pointer-events:
 			auto;
 		margin-top: -2rem !important;
-		margin-bottom: 0.1rem !important;
+		margin-bottom: 0.8rem !important;
 		padding-bottom: 0 !important;
 	}
 
@@ -5106,7 +5106,7 @@ Macro.add("magicpage", {
         );
     }
 })();
-</script><tw-tag name="crt" color="purple"></tw-tag><tw-tag name="magico" color="blue"></tw-tag><tw-tag name="invitacion" color="red"></tw-tag><tw-tag name="scrt" color="green"></tw-tag><tw-passagedata pid="1" name="Untitled Passage" tags="invitacion" position="1750,0" size="100,100">&lt;h1&gt;An Invitation&lt;/h1&gt;
+</script><tw-tag name="crt" color="purple"></tw-tag><tw-tag name="magico" color="blue"></tw-tag><tw-tag name="invitacion" color="red"></tw-tag><tw-tag name="scrt" color="green"></tw-tag><tw-tag name="final" color="green"></tw-tag><tw-passagedata pid="1" name="Untitled Passage" tags="invitacion" position="1750,0" size="100,100">&lt;h1&gt;An Invitation&lt;/h1&gt;
 &lt;div class=&quot;story-divider&quot;&gt;&lt;/div&gt;
 &lt;p class=&quot;intro-text&quot;&gt;
     It is dark, and you can&#39;t see anything more than &lt;span class=&quot;breathing-text&quot;&gt;two subtle lights&lt;/span&gt;.&lt;/p&gt;&lt;p class=&quot;intro-text&quot;&gt;Which one do you choose? &lt;/p&gt;
@@ -5129,11 +5129,13 @@ Macro.add("magicpage", {
 &lt;p&gt; Small fragments of rocks and debris drift slowly past the sides of the ship, thankfully without touching it. One by one, they are pulled toward the void ahead.&lt;/p&gt;
 &lt;p&gt;There is something... strangely captivating about it.&lt;/p&gt;
 &lt;p&gt; Almost as if you could simply stand here for hours, watching the darkness while the ship slowly gets pulled into it.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
     &lt;div class=&quot;option-science&quot;&gt;[[Stare into the void|Void]]&lt;/div&gt;
     &lt;div class=&quot;option-science&quot;&gt;[[Investigate the strange panel|Panel]]&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="Magic" tags="magico" position="2625,350" size="100,100">&lt;h1&gt;The warm lights&lt;/h1&gt;
+&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="3" name="Magic" tags="magico" position="2625,350" size="100,100">&lt;h1&gt;The warm lights&lt;/h1&gt;
 &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/iesmfOZ.png&quot; &quot;imagen1&quot; 40 11&gt;&gt;
 &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou can feel a warmth coming from the yellow light as you grow closer, the way that it flickers feels somehow mesmerizing as if it were trying to tell you something as it starts moving forward&lt;/p&gt;
 &lt;p&gt;You decide to follow it, and before you know it, you now find yourself walking through a long hallway of what appears to be an abandoned facility as your surroundings have changed in the blink of an eye.&lt;/p&gt;
@@ -5171,18 +5173,13 @@ Macro.add("magicpage", {
         the distance gets further and further away from you.
     &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&quot;science-continue&quot;&gt;
-    CLICK TO CONTINUE
-&lt;/div&gt;
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
     &lt;div class=&quot;option-science&quot;&gt;
         [[Keep staring]]
     &lt;/div&gt;
     &lt;div class=&quot;option-science&quot;&gt;
-        [[Check the control panel|Panel]]
-    &lt;/div&gt;
-
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Panel" tags="crt" position="875,650" size="100,100">&lt;h1&gt;Check the control panel:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
+       [[Check the control panel|Panel]]
+    &lt;/div&gt;</tw-passagedata><tw-passagedata pid="5" name="Panel" tags="crt" position="875,650" size="100,100">&lt;h1&gt;Check the control panel:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You turn away from the window, ignoring the hypnotizing swirling void in front of you.&lt;/p&gt;
 &lt;p&gt;After getting up close you can see that most of the controls are either completely dark or flickering intermittently. You run your fingers across the surface, pressing some buttons along the way and trying to find something that responds&lt;/p&gt;
 &lt;/div&gt;
@@ -5194,8 +5191,7 @@ Macro.add("magicpage", {
         [[Keep looking]]
     &lt;/div&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Keep staring" tags="crt" position="225,950" size="100,100">&lt;h1&gt;Stare into the void:&lt;/h1&gt;
-
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Keep staring" tags="crt" position="225,950" size="100,100">&lt;h1&gt;Stare into the void&lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot;&gt;
     &lt;p&gt;The ship feels impossibly small.&lt;/p&gt;
     &lt;p&gt;Surrounded by everything and nothing both at the same time.&lt;/p&gt;
@@ -5203,6 +5199,8 @@ Macro.add("magicpage", {
     &lt;p&gt;You only stand there. Letting it pass. Letting the void pull you without doing nothing, as if you were in a trance, hypnotized by its infinite darkness.
     &lt;/p&gt;
 &lt;/div&gt;
+
+
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
 &lt;div class=&quot;option-science&quot;&gt;[[Keep staring-&gt;Keep staring2]]
     &lt;/div&gt;
@@ -5255,14 +5253,16 @@ Somewhere, way beyond what you can see outside, there must be something familiar
 &lt;/div&gt; </tw-passagedata><tw-passagedata pid="10" name="Keep staring2" tags="crt" position="100,1300" size="100,100">&lt;h1&gt;You keep staring into the void, and you feel as if it look back at you &lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot;&gt;
    &lt;p&gt;Were you even supposed to do something?&lt;/p&gt;
-    &lt;p&gt;to BE somewhere else?&lt;/p&gt;
+    &lt;p&gt;To BE somewhere else?&lt;/p&gt;
     &lt;p&gt;You start to even forget where you are until the ship moves drastically and a sudden jolt throws you against the glass, &lt;&lt;shake&gt;&gt; hitting your face at the window. &lt;/p&gt;
 &lt;p&gt;Once you recover and look back at the space in front of you, you notice as the stars begin to move, faster and faster every second and you finally decide to move away from the window.&lt;span class=&quot;science-highlight&quot;&gt; The control panel is flashing red and an alarm begins to scream&lt;/span&gt; control panel is flashing red and an alarm begins to scream. &lt;/p&gt;
 &lt;/div&gt;
+
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
     &lt;div class=&quot;option-science&quot;&gt;[[Ignore the alarms]]&lt;/div&gt;
     &lt;div class=&quot;option-science glow-choice&quot;&gt;[[Check the control panel|Panel]]&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="11" name="Ignore the alarms" tags="crt" position="100,2500" size="100,100">&lt;h1&gt;Ignore the alarms&lt;/h1&gt;
+&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="11" name="Ignore the alarms" tags="crt" position="100,2500" size="100,100">&lt;h1&gt;Ignore the alarms&lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot; data-next=&quot;WELCOME&quot;&gt;
 &lt;p&gt;&lt;&lt;turbulence&gt;&gt;You only have an instant to react, but you cannot move your hands to the control panel. The void grows larger as it drags you, and the whole ship shakes.&lt;/p&gt;
 &lt;p&gt;You feel your body and everything around you stretch, squeeze, and distort for an instant.. then, it stops.&lt;/p&gt;
@@ -5273,15 +5273,12 @@ Somewhere, way beyond what you can see outside, there must be something familiar
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/crash.mp3&quot;&gt;&gt;&lt;span style=&quot;font-size: 4em;&quot;&gt;&lt;span class=&quot;crash-text crash-large&quot;&gt;CRASH&lt;/span&gt;&lt;/span&gt;&lt;&lt;bigshake&gt;&gt;&lt;&lt;stopturbulence&gt;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="12" name="WELCOME" tags="" position="500,2800" size="100,100">Pantalla final de ganaste
+</tw-passagedata><tw-passagedata pid="12" name="WELCOME" tags="final" position="500,2800" size="100,100">Pantalla final de ganaste
 </tw-passagedata><tw-passagedata pid="13" name="Planet" tags="crt" position="450,1750" size="100,100">&lt;h1&gt;A planet&lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot;&gt;
-
 &lt;p&gt;You start to wonder how far away home is, or if you&#39;ll make it back there from the void in front of you...&lt;/p&gt;
-
 &lt;p&gt;&lt;span style=&quot;font-size: 1.6em;&quot;&gt;&lt;&lt;textspeed 120&gt;&gt;Do you miss it?&lt;/span&gt;&lt;/p&gt;
 
- 
  &lt;/div&gt;
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
 &lt;div class=&quot;option-science&quot;&gt;[[Yes-&gt;Yes]]
@@ -5291,9 +5288,7 @@ Somewhere, way beyond what you can see outside, there must be something familiar
 &lt;/div&gt; </tw-passagedata><tw-passagedata pid="14" name="Star" tags="crt" position="675,1750" size="100,100">&lt;h1&gt;A star&lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You start to wonder how far away home is, or if you&#39;ll make it back there from the void in front of you...&lt;/p&gt;
-
 &lt;p&gt;&lt;span style=&quot;font-size: 1.6em;&quot;&gt;&lt;&lt;textspeed 120&gt;&gt;Do you miss it?&lt;/span&gt;&lt;/p&gt;
-
  
  &lt;/div&gt;
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
@@ -5391,7 +5386,7 @@ Your vision starts to fade, as you hear someone approaching before closing your 
 You know you&#39;ll be okay, you have to.&lt;/p&gt;
 &lt;p&gt;You tell that to yourself as smoke begins to fill the inside of the ship and your vision starts to fade, you hear &lt;span class=&quot;science-highlight&quot;&gt;someone approaching&lt;/span&gt; before closing your eyes and finally falling unconscious.&lt;/p&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="21" name="LEFT PATH" tags="" position="2575,475" size="100,100">HOLA</tw-passagedata><tw-passagedata pid="22" name="RIGHT PATH" tags="" position="2700,475" size="100,100"></tw-passagedata><tw-passagedata pid="23" name="Press a buton" tags="crt" position="875,900" size="100,100">&lt;h1&gt;Press a button: &lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
+</tw-passagedata><tw-passagedata pid="21" name="LEFT PATH" tags="" position="2575,475" size="100,100">HOLA</tw-passagedata><tw-passagedata pid="22" name="RIGHT PATH" tags="" position="2700,475" size="100,100"></tw-passagedata><tw-passagedata pid="23" name="Press a buton" tags="crt" position="875,900" size="100,100">&lt;h1&gt;Press a button &lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;The button sinks under your finger with a low but audible click and the entire panel lights up, for a moment, lots of symbols flash across the panel screen before most of them disappear once again.&lt;/p&gt;
 &lt;p&gt;There is one that still remains active, a message:&lt;/p&gt; 
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;textspeed 15&gt;&gt;&lt;span class=&quot;alarm-text&quot; style=&quot;font-size: 1.6em;&quot;&gt;[SIGNAL DETECTED]&lt;/span&gt;&lt;/p&gt; 
@@ -5407,7 +5402,7 @@ You know you&#39;ll be okay, you have to.&lt;/p&gt;
     &lt;/div&gt;
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="24" name="Keep looking" tags="crt" position="1150,900" size="100,100">&lt;h1&gt;Keep looking:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
+</tw-passagedata><tw-passagedata pid="24" name="Keep looking" tags="crt" position="1150,900" size="100,100">&lt;h1&gt;Keep looking&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You pull your hand away and continue examining the panel, there are several buttons but most of them seem to be unlabeled, can you even understand what they&#39;re for?&lt;/p&gt;
 &lt;p&gt;While analyzing, you do notice something strange, one of the screens is already receiving a signal, and a small indicator blinks in a corner.&lt;/p&gt; 
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;textspeed 15&gt;&gt;&lt;span class=&quot;alarm-text&quot; style=&quot;font-size: 1.6em;&quot;&gt;[SIGNAL DETECTED]&lt;/span&gt;&lt;/p&gt; 
@@ -5422,7 +5417,7 @@ You know you&#39;ll be okay, you have to.&lt;/p&gt;
     &lt;/div&gt;
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="25" name="Listen to the transmission" tags="crt" position="800,1100" size="100,100">&lt;h1&gt;Listen to the transmission:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
+</tw-passagedata><tw-passagedata pid="25" name="Listen to the transmission" tags="crt" position="800,1100" size="100,100">&lt;h1&gt;Listen to the transmission&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You lean closer to the speakers to pay attention to the message. The static grows louder and beneath it you can hear two voices, they seem to be... arguing?&lt;/p&gt;
 &lt;p&gt;You recognize the language, as the machine directly translates it for you, you manage to get a few words but most of the transmission seems corrupted, cutting in and out before you can understand the full message, not that the voices fighting and interrupting each other really helps though...
 But you manage to understand what it was about, is &lt;span class=&quot;science-highlight&quot;&gt;a request for help.&lt;/span&gt;&lt;/p&gt;
@@ -5436,7 +5431,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
     &lt;/div&gt;
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="26" name="Ignore it" tags="crt" position="1200,1100" size="100,100">&lt;h1&gt;Ignore it:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
+</tw-passagedata><tw-passagedata pid="26" name="Ignore it" tags="crt" position="1200,1100" size="100,100">&lt;h1&gt;Ignore it&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You leave the notification blinking and press a button to cancel the incoming transmission, whatever the message was, it can wait for now... &lt;/p&gt;
 &lt;p&gt;You still need to find a way to avoid being pulled into the massive void in front of you.&lt;/p&gt;
 &lt;/div&gt;
@@ -5447,7 +5442,8 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
     &lt;div class=&quot;option-science&quot;&gt;
         [[Try to change the ship&#39;s course]]
     &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="27" name="Try to locate the transmission" tags="crt" position="775,1300" size="100,100">&lt;h1&gt;Try to locate the transmission:&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot;&gt;
+</tw-passagedata><tw-passagedata pid="27" name="Try to locate the transmission" tags="crt" position="775,1300" size="100,100">&lt;h1&gt;Try to locate the transmission&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot;&gt;
+
 &lt;p&gt;You press a few buttons on the panel, trying to find a way to locate where the message came from, for a moment, you worry more about these people and not so much on the current dangerous situation YOU find yourself in right now.&lt;/p&gt;
 &lt;p&gt;The machine processes the signal for a few seconds, and then the navigation map on the screen changes, with a long thin line appearing across the screen, it stretches farther and farther than you  expected… until it eventually disappears into the black space ahead of you.&lt;/p&gt;
 
@@ -5462,7 +5458,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
     &lt;div class=&quot;option-science&quot;&gt;
         [[Try to change the ship&#39;s course]]
     &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="Try to change the ship&#39;s course" tags="crt" position="1025,1250" size="100,100">&lt;h1&gt;Try to change the ship&#39;s course:&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="28" name="Try to change the ship&#39;s course" tags="crt" position="1025,1250" size="100,100">&lt;h1&gt;Try to change the ship&#39;s course&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot;&gt;
 
 &lt;p&gt;You grab the controls and pull, but nothing happens. &lt;/p&gt;
 &lt;p&gt;You try again, even harder this time, the controls seem to respond but the ship doesn&#39;t react to your commands and the stars outside continue sliding towards the far edges of the window, almost as waving goodbye.&lt;/p&gt;
@@ -5471,7 +5467,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
 &lt;div class=&quot;choice-container&quot; id=&quot;science-options&quot;&gt;
     &lt;div class=&quot;option-science&quot;&gt; [[Brace yourself]] &lt;/div&gt;
 &lt;div class=&quot;option-science glow-choice&quot;&gt;[[Keep fighting the controls]]
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="Let it happen" tags="crt" position="1475,1550" size="100,100">&lt;h1&gt;Let it happen:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot;&gt;&lt;div id=&quot;science-dialogue&quot; data-next=&quot;Proceed with caution&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="29" name="Let it happen" tags="crt" position="1475,1550" size="100,100">&lt;h1&gt;Let it happen&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot; data-next=&quot;Proceed with caution&quot;&gt;
 &lt;p&gt;You stare at the void, it swirls and moves on a very hypnotizing way, you feel as it calls you and it&#39;s pull is extremely hard to resist. &lt;/p&gt;
 &lt;p&gt;You decide to give it a chance, to ignore every warning you get and let it drag you into it.&lt;/p&gt;
 &lt;p&gt;Perhaps there is something waiting for you on the other side.&lt;/p&gt;
@@ -5492,7 +5488,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
 
 &lt;/div&gt;
 
-</tw-passagedata><tw-passagedata pid="31" name="DO THE RIGHT THING" tags="crt" position="900,2100" size="100,100">&lt;h1&gt;DO THE RIGHT THING:&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot; data-next=&quot;The voices&quot;&gt;
+</tw-passagedata><tw-passagedata pid="31" name="DO THE RIGHT THING" tags="crt" position="900,2100" size="100,100">&lt;h1&gt;DO THE RIGHT THING&lt;/h1&gt; &lt;div id=&quot;science-dialogue&quot; data-next=&quot;The voices&quot;&gt;
 &lt;p&gt;There is a weird but comforting feeling about having a direction to follow, even if you don&#39;t know where it´s taking you, even if it is just you letting the ship go. &lt;/p&gt;
 &lt;p&gt;Your chest feels warm and it almost tickles, it feels nice, almost as a reward, it is like this feeling of knowing you&#39;re doing something nice for others.&lt;/p&gt;
 &lt;p&gt;You try to convince yourself it is that, and not you letting your mind fall into the void&#39;s hypnotic grasp.&lt;/p&gt;
@@ -5520,7 +5516,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
 &lt;p&gt;&lt;&lt;textspeed 80&gt;&gt;You managed to brace yourself and survive the impact without much harm, still, the ship lays severely damaged and smoke begins to fill the room.&lt;/p&gt;
 &lt;p&gt;Your vision starts to fade, as you hear someone approaching before closing your eyes and finally falling unconscious. &lt;/p&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="34" name="Brace yourself" tags="crt" position="1075,1825" size="100,100">&lt;h1&gt;Brace yourself:&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot; data-next=&quot;The voices&quot;&gt;
+</tw-passagedata><tw-passagedata pid="34" name="Brace yourself" tags="crt" position="1075,1825" size="100,100">&lt;h1&gt;Brace yourself&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot; data-next=&quot;The voices&quot;&gt;
 &lt;p&gt;You finally decide to step away from the controls, there is no more options nor time left.&lt;/p&gt;
 &lt;p&gt;You hold onto the nearest surface you can see as the ship begins to shake violently.&lt;&lt;shake&gt;&gt;
 &lt;span class=&quot;science-highlight&quot;&gt;You can hear a loud alarm start to scream.&lt;/span&gt;&lt;/p&gt;
@@ -5528,7 +5524,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
 &lt;/div&gt;
 &lt;&lt;silently&gt;&gt;
 [[Proceed with caution 2]]
-&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Keep fighting the controls" tags="crt" position="1350,1750" size="100,100">&lt;h1&gt;Keep fighting the controls:&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot; data-next=&quot;Survival&quot;&gt;
+&lt;&lt;/silently&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="Keep fighting the controls" tags="crt" position="1350,1750" size="100,100">&lt;h1&gt;Keep fighting the controls&lt;/h1&gt;&lt;div id=&quot;science-dialogue&quot; data-next=&quot;Survival&quot;&gt;
 &lt;p&gt;You press every button and emergency control you can reach, desperate for a way  out of this situation but nothing seems to work. The alarm begins to scream and you suddenly see &lt;span class=&quot;science-highlight&quot;&gt;a warning message appear on the main screen.&lt;/span&gt;&lt;/p&gt;
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;textspeed 15&gt;&gt;&lt;span class=&quot;alarm-text&quot; style=&quot;font-size: 1.6em;&quot;&gt;[ WARNING ]&lt;/span&gt; &lt;&lt;turbulence&gt;&gt; &lt;/p&gt; &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;textspeed 15&gt;&gt;&lt;span class=&quot;alarm-text&quot; style=&quot;font-size: 1.6em;&quot;&gt;[ COLLISION COURSE DETECTED ]&lt;/span&gt; &lt;&lt;turbulence&gt;&gt; &lt;/p&gt;
 &lt;/div&gt;
@@ -5538,7 +5534,7 @@ But you manage to understand what it was about, is &lt;span class=&quot;science-
  &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;textspeed 15&gt;&gt;&lt;span class=&quot;alarm-text&quot; style=&quot;font-size: 1.6em;&quot;&gt;[ WARNING ]&lt;/span&gt;&lt;/p&gt;
  &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;textspeed 15&gt;&gt;&lt;span class=&quot;alarm-text&quot; style=&quot;font-size: 1.6em;&quot;&gt;[ COLLISION COURSE DETECTED ]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The void grows larger as it drags you and the whole ship shakes, you feel your body and everything around you stretch and squeeze and distort for an instant.. then, it stops. You suddenly see light coming through the window, but the ship only continues to move even faster.&lt;/p&gt;
-&lt;p&gt;You cannot recognize the stars and constellations at this part of space and neither does your ship, and it is the same for the big, massive planet that suddenly appeared in front of you as the void pulled in you and sent you to the most distant and forgotten area of space.&lt;/p&gt;
+&lt;p&gt;&lt;&lt;turbulence&gt;&gt;You cannot recognize the stars and constellations at this part of space and neither does your ship, and it is the same for the big, massive planet that suddenly appeared in front of you as the void pulled in you and sent you to the most distant and forgotten area of space.&lt;/p&gt;
 &lt;p&gt;The planet grows bigger and bigger as you look at the window, even if you try to do something at this point the ship doesn’t react nor changes directions, it got trapped into the planet’s orbit and you can only hear as the alarms become louder and the ship shakes even more violently than before.  The window fills with light as you get closer to the planet’s surface, and then…&lt;/p&gt;
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/crash.mp3&quot;&gt;&gt;&lt;span style=&quot;font-size: 4em;&quot;&gt;&lt;span class=&quot;crash-text crash-large&quot;&gt;CRASH&lt;/span&gt;&lt;/span&gt;&lt;&lt;bigshake&gt;&gt;&lt;&lt;stopturbulence&gt;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;&lt;textspeed 80&gt;&gt;You managed to brace yourself and survive the impact without much harm, still, the ship lays severely damaged and smoke begins to fill the room.&lt;/p&gt;
