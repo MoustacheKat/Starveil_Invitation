@@ -2875,130 +2875,130 @@ body:has(.passage.magico)::after {
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">/* =============  MÚSICA Y SONIDOS =========================== */
 
 const Boton_magia =
-    "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/boton_magia.mp3";
+  "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/boton_magia.mp3";
 
 const Boton_ciencia =
-    "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/boton_ciencia.mp3";
+  "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/boton_ciencia.mp3";
 
 const SonidoBotonPorTag = {
-    invitacion: Boton_magia,
-    magico: Boton_magia,
-    crt: Boton_ciencia
+  invitacion: Boton_magia,
+  magico: Boton_magia,
+  crt: Boton_ciencia
 };
 
 function ReproducirSonidoBoton(tag) {
 
-    const soundFile =
-        SonidoBotonPorTag[tag];
+  const soundFile =
+      SonidoBotonPorTag[tag];
 
-    if (!soundFile) {
-        return;
-    }
+  if (!soundFile) {
+      return;
+  }
 
-    const sound =
-        new Audio(soundFile);
+  const sound =
+      new Audio(soundFile);
 
-    sound.volume = 0.6;
-    sound.play().catch(function () {});
+  sound.volume = 0.6;
+  sound.play().catch(function () {});
 
 }
 
 (function () {
 
-    const musicByTag = {
-        magico: "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/Musica_Magia.mp3",
-        crt: "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/Musica_Ciencia.mp3"
-    };
+  const musicByTag = {
+      magico: "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/Musica_Magia.mp3",
+      crt: "https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/Musica_Ciencia.mp3"
+  };
 
-    let currentMusic = null;
-    let currentTrack = null;
+  let currentMusic = null;
+  let currentTrack = null;
 
-    function isTagActive(tag) {
+  function isTagActive(tag) {
 
-        return (
-            typeof tags === "function" &&
-            tags().includes(tag)
-        );
+      return (
+          typeof tags === "function" &&
+          tags().includes(tag)
+      );
 
-    }
+  }
 
- /* Musica */
-    $(document).on(":passagestart", function () {
-        const passageTags = tags();
-        let newTrack = null;
-        if (passageTags.includes("magico")) {
-            newTrack = musicByTag.magico;
-        }
-        else if (passageTags.includes("crt")) {
-            newTrack = musicByTag.crt;
-        }
+/* Musica */
+  $(document).on(":passagestart", function () {
+      const passageTags = tags();
+      let newTrack = null;
+      if (passageTags.includes("magico")) {
+          newTrack = musicByTag.magico;
+      }
+      else if (passageTags.includes("crt")) {
+          newTrack = musicByTag.crt;
+      }
 
-        /* Misma música → continuar */
+      /* Misma música → continuar */
 
-        if (newTrack === currentTrack) {
-            return;
-        }
+      if (newTrack === currentTrack) {
+          return;
+      }
 
-        /* Detener música anterior */
+      /* Detener música anterior */
 
-        if (currentMusic) {
-            currentMusic.pause();
-            currentMusic.currentTime = 0;
-            currentMusic = null;
+      if (currentMusic) {
+          currentMusic.pause();
+          currentMusic.currentTime = 0;
+          currentMusic = null;
 
-        }
-        currentTrack = newTrack;
-        /* El passage no tiene música */
+      }
+      currentTrack = newTrack;
+      /* El passage no tiene música */
 
-        if (!newTrack) {
-            return;
-        }
+      if (!newTrack) {
+          return;
+      }
 
-        /* Crear nueva música */
+      /* Crear nueva música */
 
-        currentMusic = new Audio(newTrack);
-        currentMusic.loop = true;
-        currentMusic.volume = 0.35;
-        currentMusic.play().catch(function () {
-            console.log(
-                "Audio esperando interacción del usuario."
-            );
-        });
-    });
+      currentMusic = new Audio(newTrack);
+      currentMusic.loop = true;
+      currentMusic.volume = 0.35;
+      currentMusic.play().catch(function () {
+          console.log(
+              "Audio esperando interacción del usuario."
+          );
+      });
+  });
 
-    /* =========================== Sonido de seleccion ========================== */
+  /* =========================== Sonido de seleccion ========================== */
 
-    $(document).on(
-        "click",
-        ".passage .link-internal, .passage button",
-        function () {
-            let soundTag = null;
-            if (isTagActive("magico")) {
-                soundTag = "magico";
-            }
-            else if (isTagActive("crt")) {
-                soundTag = "crt";
-            }
-            else if (isTagActive("invitacion")) {
-                soundTag = "invitacion";
-            }
-            ReproducirSonidoBoton(soundTag);
-        }
-    );
-    document.addEventListener(
-        "click",
-        function () {
-            if (currentMusic) {
-                currentMusic.play().catch(
-                    function () {}
-                );
-            }
-        },
-        {
-            once: true,
-            capture: true
-        }
-    );
+  $(document).on(
+      "click",
+      ".passage .link-internal, .passage button",
+      function () {
+          let soundTag = null;
+          if (isTagActive("magico")) {
+              soundTag = "magico";
+          }
+          else if (isTagActive("crt")) {
+              soundTag = "crt";
+          }
+          else if (isTagActive("invitacion")) {
+              soundTag = "invitacion";
+          }
+          ReproducirSonidoBoton(soundTag);
+      }
+  );
+  document.addEventListener(
+      "click",
+      function () {
+          if (currentMusic) {
+              currentMusic.play().catch(
+                  function () {}
+              );
+          }
+      },
+      {
+          once: true,
+          capture: true
+      }
+  );
 
 })();
 
@@ -3006,678 +3006,678 @@ function ReproducirSonidoBoton(tag) {
 
 (function () {
 
-    "use strict";
+  "use strict";
 
-    const ClaveRutaStarveil =
-        "starveil-ruta-v1";
+  const ClaveRutaStarveil =
+      "starveil-ruta-v1";
 
-    const PasajeFinalStarveil =
-        "WELCOME";
+  const PasajeFinalStarveil =
+      "WELCOME";
 
-    const VideoFinalStarveil =
-        "https://moustachekat.github.io/Starveil_Invitation/Final.mp4";
+  const VideoFinalStarveil =
+      "https://moustachekat.github.io/Starveil_Invitation/Final.mp4";
 
-    const SonidosFinalesStarveil = [
-        "https://moustachekat.github.io/Starveil_Invitation/Sounds/taran.mp3",
-        "https://moustachekat.github.io/Starveil_Invitation/Sounds/YIPPIE.mp3"
-    ];
+  const SonidosFinalesStarveil = [
+      "https://moustachekat.github.io/Starveil_Invitation/Sounds/taran.mp3",
+      "https://moustachekat.github.io/Starveil_Invitation/Sounds/YIPPIE.mp3"
+  ];
 
-    let datosRutaStarveil =
-        LeerDatosRutaStarveil();
+  let datosRutaStarveil =
+      LeerDatosRutaStarveil();
 
-    let audioFinalStarveil =
-        null;
+  let audioFinalStarveil =
+      null;
 
-    function CrearDatosRutaStarveil() {
+  function CrearDatosRutaStarveil() {
 
-        return {
-            v: 1,
-            u: "",
-            r: [],
-            finalizada: false
-        };
+      return {
+          v: 1,
+          u: "",
+          r: [],
+          finalizada: false
+      };
 
-    }
+  }
 
-    function LeerDatosRutaStarveil() {
+  function LeerDatosRutaStarveil() {
 
-        try {
+      try {
 
-            const datosGuardados =
-                window.sessionStorage.getItem(
-                    ClaveRutaStarveil
-                );
+          const datosGuardados =
+              window.sessionStorage.getItem(
+                  ClaveRutaStarveil
+              );
 
-            if (!datosGuardados) {
-                return CrearDatosRutaStarveil();
-            }
+          if (!datosGuardados) {
+              return CrearDatosRutaStarveil();
+          }
 
-            const datos =
-                JSON.parse(datosGuardados);
+          const datos =
+              JSON.parse(datosGuardados);
 
-            if (
-                !datos ||
-                datos.v !== 1 ||
-                !Array.isArray(datos.r)
-            ) {
-                return CrearDatosRutaStarveil();
-            }
+          if (
+              !datos ||
+              datos.v !== 1 ||
+              !Array.isArray(datos.r)
+          ) {
+              return CrearDatosRutaStarveil();
+          }
 
-            datos.u =
-                typeof datos.u === "string"
-                    ? datos.u
-                    : "";
+          datos.u =
+              typeof datos.u === "string"
+                  ? datos.u
+                  : "";
 
-            datos.r =
-                datos.r.filter(function (nombrePasaje) {
-                    return (
-                        typeof nombrePasaje === "string" &&
-                        nombrePasaje.trim() !== ""
-                    );
-                });
+          datos.r =
+              datos.r.filter(function (nombrePasaje) {
+                  return (
+                      typeof nombrePasaje === "string" &&
+                      nombrePasaje.trim() !== ""
+                  );
+              });
 
-            datos.finalizada =
-                datos.finalizada === true;
+          datos.finalizada =
+              datos.finalizada === true;
 
-            return datos;
+          return datos;
 
-        } catch (error) {
-            return CrearDatosRutaStarveil();
-        }
+      } catch (error) {
+          return CrearDatosRutaStarveil();
+      }
 
-    }
+  }
 
-    function GuardarDatosRutaStarveil() {
+  function GuardarDatosRutaStarveil() {
 
-        try {
+      try {
 
-            window.sessionStorage.setItem(
-                ClaveRutaStarveil,
-                JSON.stringify(datosRutaStarveil)
-            );
+          window.sessionStorage.setItem(
+              ClaveRutaStarveil,
+              JSON.stringify(datosRutaStarveil)
+          );
 
-        } catch (error) {
-        }
+      } catch (error) {
+      }
 
-    }
+  }
 
-    function ObtenerPasajeDelEvento(event) {
+  function ObtenerPasajeDelEvento(event) {
 
-        if (
-            event &&
-            event.detail &&
-            event.detail.passage
-        ) {
-            return event.detail.passage;
-        }
-
-        return null;
-
-    }
-
-    function RegistrarPasajeStarveil(nombrePasaje) {
-
-        if (
-            typeof nombrePasaje !== "string" ||
-            nombrePasaje.trim() === ""
-        ) {
-            return;
-        }
-
-        const nombreLimpio =
-            nombrePasaje.trim();
-
-        const ultimoPasaje =
-            datosRutaStarveil.r[
-                datosRutaStarveil.r.length - 1
-            ];
-
-        if (ultimoPasaje === nombreLimpio) {
-            return;
-        }
-
-        datosRutaStarveil.r.push(
-            nombreLimpio
-        );
-
-        GuardarDatosRutaStarveil();
-
-    }
-
-    function MostrarEntradaNombreStarveil() {
-
-        if (
-            datosRutaStarveil.u ||
-            document.getElementById(
-                "entrada-nombre-starveil"
-            )
-        ) {
-            return;
-        }
-
-        const pantalla =
-            document.createElement("div");
-
-        pantalla.id =
-            "entrada-nombre-starveil";
-
-        pantalla.className =
-            "pantalla-sistema-starveil";
-
-        pantalla.setAttribute(
-            "role",
-            "dialog"
-        );
-
-        pantalla.setAttribute(
-            "aria-modal",
-            "true"
-        );
-
-        pantalla.setAttribute(
-            "aria-labelledby",
-            "titulo-nombre-starveil"
-        );
-
-        pantalla.innerHTML =
-            '<form class="panel-sistema-starveil" id="formulario-nombre-starveil">' +
-                '<h2 class="titulo-sistema-starveil" id="titulo-nombre-starveil">Who is it?</h2>' +
-                '<input class="campo-nombre-starveil" id="campo-nombre-starveil" type="text" maxlength="32" autocomplete="nickname" placeholder="Username" aria-label="Username" required>' +
-                '<button class="boton-sistema-starveil" type="submit">ENTER</button>' +
-                '<p class="error-nombre-starveil" id="error-nombre-starveil" aria-live="polite"></p>' +
-            '</form>';
-
-        document.body.appendChild(
-            pantalla
-        );
-
-        document.body.classList.add(
-            "nombre-starveil-abierto"
-        );
-
-        const formulario =
-            pantalla.querySelector(
-                "#formulario-nombre-starveil"
-            );
-
-        const campoNombre =
-            pantalla.querySelector(
-                "#campo-nombre-starveil"
-            );
-
-        const mensajeError =
-            pantalla.querySelector(
-                "#error-nombre-starveil"
-            );
-
-        formulario.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-                const nombre =
-                    campoNombre.value
-                        .trim()
-                        .replace(/\s+/g, " ");
-
-                if (!nombre) {
-                    mensajeError.textContent =
-                        "Please enter at least one character.";
-                    campoNombre.focus();
-                    return;
-                }
-
-                datosRutaStarveil.u =
-                    Array.from(nombre)
-                        .slice(0, 32)
-                        .join("");
-
-                GuardarDatosRutaStarveil();
+      if (
+          event &&
+          event.detail &&
+          event.detail.passage
+      ) {
+          return event.detail.passage;
+      }
+
+      return null;
+
+  }
+
+  function RegistrarPasajeStarveil(nombrePasaje) {
+
+      if (
+          typeof nombrePasaje !== "string" ||
+          nombrePasaje.trim() === ""
+      ) {
+          return;
+      }
+
+      const nombreLimpio =
+          nombrePasaje.trim();
+
+      const ultimoPasaje =
+          datosRutaStarveil.r[
+              datosRutaStarveil.r.length - 1
+          ];
+
+      if (ultimoPasaje === nombreLimpio) {
+          return;
+      }
+
+      datosRutaStarveil.r.push(
+          nombreLimpio
+      );
+
+      GuardarDatosRutaStarveil();
+
+  }
+
+  function MostrarEntradaNombreStarveil() {
+
+      if (
+          datosRutaStarveil.u ||
+          document.getElementById(
+              "entrada-nombre-starveil"
+          )
+      ) {
+          return;
+      }
+
+      const pantalla =
+          document.createElement("div");
+
+      pantalla.id =
+          "entrada-nombre-starveil";
+
+      pantalla.className =
+          "pantalla-sistema-starveil";
+
+      pantalla.setAttribute(
+          "role",
+          "dialog"
+      );
+
+      pantalla.setAttribute(
+          "aria-modal",
+          "true"
+      );
+
+      pantalla.setAttribute(
+          "aria-labelledby",
+          "titulo-nombre-starveil"
+      );
+
+      pantalla.innerHTML =
+          '<form class="panel-sistema-starveil" id="formulario-nombre-starveil">' +
+              '<h2 class="titulo-sistema-starveil" id="titulo-nombre-starveil">Who is it?</h2>' +
+              '<input class="campo-nombre-starveil" id="campo-nombre-starveil" type="text" maxlength="32" autocomplete="nickname" placeholder="Username" aria-label="Username" required>' +
+              '<button class="boton-sistema-starveil" type="submit">ENTER</button>' +
+              '<p class="error-nombre-starveil" id="error-nombre-starveil" aria-live="polite"></p>' +
+          '</form>';
+
+      document.body.appendChild(
+          pantalla
+      );
+
+      document.body.classList.add(
+          "nombre-starveil-abierto"
+      );
+
+      const formulario =
+          pantalla.querySelector(
+              "#formulario-nombre-starveil"
+          );
+
+      const campoNombre =
+          pantalla.querySelector(
+              "#campo-nombre-starveil"
+          );
+
+      const mensajeError =
+          pantalla.querySelector(
+              "#error-nombre-starveil"
+          );
+
+      formulario.addEventListener(
+          "submit",
+          function (event) {
+
+              event.preventDefault();
+
+              const nombre =
+                  campoNombre.value
+                      .trim()
+                      .replace(/\s+/g, " ");
+
+              if (!nombre) {
+                  mensajeError.textContent =
+                      "Please enter at least one character.";
+                  campoNombre.focus();
+                  return;
+              }
+
+              datosRutaStarveil.u =
+                  Array.from(nombre)
+                      .slice(0, 32)
+                      .join("");
+
+              GuardarDatosRutaStarveil();
 
-                document.body.classList.remove(
-                    "nombre-starveil-abierto"
-                );
+              document.body.classList.remove(
+                  "nombre-starveil-abierto"
+              );
 
-                pantalla.remove();
+              pantalla.remove();
 
-            }
-        );
+          }
+      );
 
-        window.setTimeout(
-            function () {
-                if (pantalla.isConnected) {
-                    campoNombre.focus();
-                }
-            },
-            1550
-        );
+      window.setTimeout(
+          function () {
+              if (pantalla.isConnected) {
+                  campoNombre.focus();
+              }
+          },
+          1550
+      );
 
-    }
+  }
 
-    function CrearCodigoRutaStarveil() {
+  function CrearCodigoRutaStarveil() {
 
-        return (
-            "SV1|" +
-            JSON.stringify({
-                v: 1,
-                u: datosRutaStarveil.u,
-                r: datosRutaStarveil.r
-            })
-        );
+      return (
+          "SV1|" +
+          JSON.stringify({
+              v: 1,
+              u: datosRutaStarveil.u,
+              r: datosRutaStarveil.r
+          })
+      );
 
-    }
+  }
 
-    function ObtenerTituloFinalStarveil() {
+  function ObtenerTituloFinalStarveil() {
 
-        const ruta =
-            datosRutaStarveil.r;
+      const ruta =
+          datosRutaStarveil.r;
 
-        const indiceWelcome =
-            ruta.lastIndexOf(
-                PasajeFinalStarveil
-            );
+      const indiceWelcome =
+          ruta.lastIndexOf(
+              PasajeFinalStarveil
+          );
 
-        if (indiceWelcome > 0) {
-            return ruta[indiceWelcome - 1];
-        }
+      if (indiceWelcome > 0) {
+          return ruta[indiceWelcome - 1];
+      }
 
-        if (
-            indiceWelcome === -1 &&
-            ruta.length > 0
-        ) {
-            return ruta[ruta.length - 1];
-        }
+      if (
+          indiceWelcome === -1 &&
+          ruta.length > 0
+      ) {
+          return ruta[ruta.length - 1];
+      }
 
-        return "";
+      return "";
 
-    }
+  }
 
-    function CopiarCodigoRutaStarveil(
-        codigo,
-        campoCodigo,
-        mensajeEstado
-    ) {
+  function CopiarCodigoRutaStarveil(
+      codigo,
+      campoCodigo,
+      mensajeEstado
+  ) {
 
-        function CopiaAlternativa() {
+      function CopiaAlternativa() {
 
-            campoCodigo.focus();
-            campoCodigo.select();
+          campoCodigo.focus();
+          campoCodigo.select();
 
-            const copiado =
-                document.execCommand("copy");
+          const copiado =
+              document.execCommand("copy");
 
-            mensajeEstado.textContent =
-                copiado
-                    ? "Link copied!"
-                    : "Select the link and copy it manually.";
+          mensajeEstado.textContent =
+              copiado
+                  ? "Link copied!"
+                  : "Select the link and copy it manually.";
 
-        }
+      }
 
-        if (
-            navigator.clipboard &&
-            window.isSecureContext
-        ) {
+      if (
+          navigator.clipboard &&
+          window.isSecureContext
+      ) {
 
-            navigator.clipboard
-                .writeText(codigo)
-                .then(function () {
-                    mensajeEstado.textContent =
-                        "Link copied!";
-                })
-                .catch(CopiaAlternativa);
+          navigator.clipboard
+              .writeText(codigo)
+              .then(function () {
+                  mensajeEstado.textContent =
+                      "Link copied!";
+              })
+              .catch(CopiaAlternativa);
 
-            return;
-        }
+          return;
+      }
 
-        CopiaAlternativa();
+      CopiaAlternativa();
 
-    }
+  }
 
-    function DetenerSonidosFinalesStarveil() {
+  function DetenerSonidosFinalesStarveil() {
 
-        if (!audioFinalStarveil) {
-            return;
-        }
+      if (!audioFinalStarveil) {
+          return;
+      }
 
-        audioFinalStarveil.onended =
-            null;
+      audioFinalStarveil.onended =
+          null;
 
-        audioFinalStarveil.onerror =
-            null;
+      audioFinalStarveil.onerror =
+          null;
 
-        audioFinalStarveil.pause();
+      audioFinalStarveil.pause();
 
-        try {
-            audioFinalStarveil.currentTime = 0;
-        } catch (error) {}
+      try {
+          audioFinalStarveil.currentTime = 0;
+      } catch (error) {}
 
-        audioFinalStarveil.removeAttribute(
-            "src"
-        );
+      audioFinalStarveil.removeAttribute(
+          "src"
+      );
 
-        audioFinalStarveil.load();
+      audioFinalStarveil.load();
 
-        audioFinalStarveil =
-            null;
+      audioFinalStarveil =
+          null;
 
-    }
+  }
 
-    function ReproducirSonidosFinalesStarveil(
-        pantalla
-    ) {
+  function ReproducirSonidosFinalesStarveil(
+      pantalla
+  ) {
 
-        DetenerSonidosFinalesStarveil();
+      DetenerSonidosFinalesStarveil();
 
-        let indiceSonido =
-            0;
+      let indiceSonido =
+          0;
 
-        let esperandoInteraccion =
-            false;
+      let esperandoInteraccion =
+          false;
 
-        audioFinalStarveil =
-            new Audio(
-                SonidosFinalesStarveil[indiceSonido]
-            );
+      audioFinalStarveil =
+          new Audio(
+              SonidosFinalesStarveil[indiceSonido]
+          );
 
-        audioFinalStarveil.preload =
-            "auto";
+      audioFinalStarveil.preload =
+          "auto";
 
-        audioFinalStarveil.volume =
-            0.85;
+      audioFinalStarveil.volume =
+          0.85;
 
-        function IntentarReproduccion() {
+      function IntentarReproduccion() {
 
-            if (!audioFinalStarveil) {
-                return;
-            }
+          if (!audioFinalStarveil) {
+              return;
+          }
 
-            const reproduccion =
-                audioFinalStarveil.play();
+          const reproduccion =
+              audioFinalStarveil.play();
 
-            if (
-                reproduccion &&
-                typeof reproduccion.catch === "function"
-            ) {
+          if (
+              reproduccion &&
+              typeof reproduccion.catch === "function"
+          ) {
 
-                reproduccion.catch(function () {
+              reproduccion.catch(function () {
 
-                    if (
-                        esperandoInteraccion ||
-                        !pantalla.isConnected
-                    ) {
-                        return;
-                    }
+                  if (
+                      esperandoInteraccion ||
+                      !pantalla.isConnected
+                  ) {
+                      return;
+                  }
 
-                    esperandoInteraccion =
-                        true;
+                  esperandoInteraccion =
+                      true;
 
-                    pantalla.addEventListener(
-                        "pointerdown",
-                        function () {
-                            esperandoInteraccion = false;
-                            IntentarReproduccion();
-                        },
-                        { once: true }
-                    );
+                  pantalla.addEventListener(
+                      "pointerdown",
+                      function () {
+                          esperandoInteraccion = false;
+                          IntentarReproduccion();
+                      },
+                      { once: true }
+                  );
 
-                });
+              });
 
-            }
+          }
 
-        }
+      }
 
-        function ReproducirSiguienteSonido() {
+      function ReproducirSiguienteSonido() {
 
-            if (!audioFinalStarveil) {
-                return;
-            }
+          if (!audioFinalStarveil) {
+              return;
+          }
 
-            indiceSonido++;
+          indiceSonido++;
 
-            if (
-                indiceSonido >=
-                SonidosFinalesStarveil.length
-            ) {
+          if (
+              indiceSonido >=
+              SonidosFinalesStarveil.length
+          ) {
 
-                audioFinalStarveil.onended =
-                    null;
+              audioFinalStarveil.onended =
+                  null;
 
-                audioFinalStarveil.onerror =
-                    null;
+              audioFinalStarveil.onerror =
+                  null;
 
-                audioFinalStarveil =
-                    null;
+              audioFinalStarveil =
+                  null;
 
-                return;
-            }
+              return;
+          }
 
-            esperandoInteraccion =
-                false;
+          esperandoInteraccion =
+              false;
 
-            audioFinalStarveil.src =
-                SonidosFinalesStarveil[indiceSonido];
+          audioFinalStarveil.src =
+              SonidosFinalesStarveil[indiceSonido];
 
-            audioFinalStarveil.load();
+          audioFinalStarveil.load();
 
-            IntentarReproduccion();
+          IntentarReproduccion();
 
-        }
+      }
 
-        audioFinalStarveil.onended =
-            ReproducirSiguienteSonido;
+      audioFinalStarveil.onended =
+          ReproducirSiguienteSonido;
 
-        audioFinalStarveil.onerror =
-            ReproducirSiguienteSonido;
+      audioFinalStarveil.onerror =
+          ReproducirSiguienteSonido;
 
-        IntentarReproduccion();
+      IntentarReproduccion();
 
-    }
+  }
 
-    function MostrarResultadoRutaStarveil() {
+  function MostrarResultadoRutaStarveil() {
 
-        if (
-            document.getElementById(
-                "resultado-ruta-starveil"
-            )
-        ) {
-            return;
-        }
+      if (
+          document.getElementById(
+              "resultado-ruta-starveil"
+          )
+      ) {
+          return;
+      }
 
-        datosRutaStarveil.finalizada =
-            true;
+      datosRutaStarveil.finalizada =
+          true;
 
-        GuardarDatosRutaStarveil();
+      GuardarDatosRutaStarveil();
 
-        const codigo =
-            CrearCodigoRutaStarveil();
+      const codigo =
+          CrearCodigoRutaStarveil();
 
-        const tituloFinal =
-            ObtenerTituloFinalStarveil();
+      const tituloFinal =
+          ObtenerTituloFinalStarveil();
 
-        const pantalla =
-            document.createElement("div");
+      const pantalla =
+          document.createElement("div");
 
-        pantalla.id =
-            "resultado-ruta-starveil";
+      pantalla.id =
+          "resultado-ruta-starveil";
 
-        pantalla.className =
-            "pantalla-sistema-starveil";
+      pantalla.className =
+          "pantalla-sistema-starveil";
 
-        pantalla.innerHTML =
-            '<video class="video-final-starveil" autoplay muted loop playsinline preload="auto" aria-hidden="true">' +
-                '<source src="' + VideoFinalStarveil + '" type="video/mp4">' +
-            '</video>' +
-            '<section class="panel-sistema-starveil">' +
-                '<h2 class="titulo-sistema-starveil">Congratulations!</h2>' +
-                '<p class="texto-sistema-starveil texto-copiar-starveil"><strong class="nombre-resultado-starveil"></strong></p>' +
-                '<p class="ruta-visible-starveil"></p>' +
-                '<p class="texto-sistema-starveil texto-copiar-starveil">Copy this link:</p>' +
-                '<textarea class="codigo-ruta-starveil" readonly aria-label="Route link"></textarea>' +
-                '<button class="boton-sistema-starveil copiar-ruta-starveil" type="button">COPY LINK</button>' +
-                '<p class="estado-copia-starveil" aria-live="polite"></p>' +
-            '</section>';
+      pantalla.innerHTML =
+          '<video class="video-final-starveil" autoplay muted loop playsinline preload="auto" aria-hidden="true">' +
+              '<source src="' + VideoFinalStarveil + '" type="video/mp4">' +
+          '</video>' +
+          '<section class="panel-sistema-starveil">' +
+              '<h2 class="titulo-sistema-starveil">Congratulations!</h2>' +
+              '<p class="texto-sistema-starveil texto-copiar-starveil"><strong class="nombre-resultado-starveil"></strong></p>' +
+              '<p class="ruta-visible-starveil"></p>' +
+              '<p class="texto-sistema-starveil texto-copiar-starveil">Copy this link:</p>' +
+              '<textarea class="codigo-ruta-starveil" readonly aria-label="Route link"></textarea>' +
+              '<button class="boton-sistema-starveil copiar-ruta-starveil" type="button">COPY LINK</button>' +
+              '<p class="estado-copia-starveil" aria-live="polite"></p>' +
+          '</section>';
 
-        const nombreResultado =
-            pantalla.querySelector(
-                ".nombre-resultado-starveil"
-            );
+      const nombreResultado =
+          pantalla.querySelector(
+              ".nombre-resultado-starveil"
+          );
 
-        const rutaVisible =
-            pantalla.querySelector(
-                ".ruta-visible-starveil"
-            );
+      const rutaVisible =
+          pantalla.querySelector(
+              ".ruta-visible-starveil"
+          );
 
-        const campoCodigo =
-            pantalla.querySelector(
-                ".codigo-ruta-starveil"
-            );
+      const campoCodigo =
+          pantalla.querySelector(
+              ".codigo-ruta-starveil"
+          );
 
-        const botonCopiar =
-            pantalla.querySelector(
-                ".copiar-ruta-starveil"
-            );
+      const botonCopiar =
+          pantalla.querySelector(
+              ".copiar-ruta-starveil"
+          );
 
-        const mensajeEstado =
-            pantalla.querySelector(
-                ".estado-copia-starveil"
-            );
+      const mensajeEstado =
+          pantalla.querySelector(
+              ".estado-copia-starveil"
+          );
 
-        nombreResultado.textContent =
-            datosRutaStarveil.u ||
-            "Anonymous";
+      nombreResultado.textContent =
+          datosRutaStarveil.u ||
+          "Anonymous";
 
-        rutaVisible.textContent =
-            '"' + tituloFinal + '"';
+      rutaVisible.textContent =
+          '"' + tituloFinal + '"';
 
-        campoCodigo.value =
-            codigo;
+      campoCodigo.value =
+          codigo;
 
-        botonCopiar.addEventListener(
-            "click",
-            function () {
-                CopiarCodigoRutaStarveil(
-                    codigo,
-                    campoCodigo,
-                    mensajeEstado
-                );
-            }
-        );
+      botonCopiar.addEventListener(
+          "click",
+          function () {
+              CopiarCodigoRutaStarveil(
+                  codigo,
+                  campoCodigo,
+                  mensajeEstado
+              );
+          }
+      );
 
-        document.body.appendChild(
-            pantalla
-        );
+      document.body.appendChild(
+          pantalla
+      );
 
-        document.body.classList.add(
-            "final-starveil-abierto"
-        );
+      document.body.classList.add(
+          "final-starveil-abierto"
+      );
 
-        const videoFinal =
-            pantalla.querySelector(
-                ".video-final-starveil"
-            );
+      const videoFinal =
+          pantalla.querySelector(
+              ".video-final-starveil"
+          );
 
-        videoFinal.muted =
-            true;
+      videoFinal.muted =
+          true;
 
-        videoFinal.volume =
-            0;
+      videoFinal.volume =
+          0;
 
-        videoFinal.play().catch(
-            function () {}
-        );
+      videoFinal.play().catch(
+          function () {}
+      );
 
-        ReproducirSonidosFinalesStarveil(
-            pantalla
-        );
+      ReproducirSonidosFinalesStarveil(
+          pantalla
+      );
 
-    }
+  }
 
-    $(document).one(
-        ":storyready.ocultarBarraStarveil",
-        function () {
+  $(document).one(
+      ":storyready.ocultarBarraStarveil",
+      function () {
 
-            if (
-                typeof UIBar !== "undefined" &&
-                typeof UIBar.destroy === "function"
-            ) {
-                UIBar.destroy();
-            }
+          if (
+              typeof UIBar !== "undefined" &&
+              typeof UIBar.destroy === "function"
+          ) {
+              UIBar.destroy();
+          }
 
-        }
-    );
+      }
+  );
 
-    $(document).off(
-        ":passagestart.rutaStarveil"
-    );
+  $(document).off(
+      ":passagestart.rutaStarveil"
+  );
 
-    $(document).on(
-        ":passagestart.rutaStarveil",
-        function (event) {
+  $(document).on(
+      ":passagestart.rutaStarveil",
+      function (event) {
 
-            DetenerSonidosFinalesStarveil();
+          DetenerSonidosFinalesStarveil();
 
-            document.body.classList.remove(
-                "final-starveil-abierto"
-            );
+          document.body.classList.remove(
+              "final-starveil-abierto"
+          );
 
-            const resultadoAnterior =
-                document.getElementById(
-                    "resultado-ruta-starveil"
-                );
+          const resultadoAnterior =
+              document.getElementById(
+                  "resultado-ruta-starveil"
+              );
 
-            if (resultadoAnterior) {
-                resultadoAnterior.remove();
-            }
+          if (resultadoAnterior) {
+              resultadoAnterior.remove();
+          }
 
-            const pasaje =
-                ObtenerPasajeDelEvento(event);
+          const pasaje =
+              ObtenerPasajeDelEvento(event);
 
-            const nombrePasaje =
-                pasaje && pasaje.name
-                    ? pasaje.name
-                    : State.passage;
+          const nombrePasaje =
+              pasaje && pasaje.name
+                  ? pasaje.name
+                  : State.passage;
 
-            RegistrarPasajeStarveil(
-                nombrePasaje
-            );
+          RegistrarPasajeStarveil(
+              nombrePasaje
+          );
 
-        }
-    );
+      }
+  );
 
-    $(document).off(
-        ":passagedisplay.rutaStarveil"
-    );
+  $(document).off(
+      ":passagedisplay.rutaStarveil"
+  );
 
-    $(document).on(
-        ":passagedisplay.rutaStarveil",
-        function (event) {
+  $(document).on(
+      ":passagedisplay.rutaStarveil",
+      function (event) {
 
-            const pasaje =
-                ObtenerPasajeDelEvento(event);
+          const pasaje =
+              ObtenerPasajeDelEvento(event);
 
-            const nombrePasaje =
-                pasaje && pasaje.name
-                    ? pasaje.name
-                    : State.passage;
+          const nombrePasaje =
+              pasaje && pasaje.name
+                  ? pasaje.name
+                  : State.passage;
 
-            const etiquetasPasaje =
-                pasaje && Array.isArray(pasaje.tags)
-                    ? pasaje.tags
-                    : [];
+          const etiquetasPasaje =
+              pasaje && Array.isArray(pasaje.tags)
+                  ? pasaje.tags
+                  : [];
 
-            if (
-                nombrePasaje === PasajeFinalStarveil ||
-                etiquetasPasaje.includes("final")
-            ) {
-                MostrarResultadoRutaStarveil();
-                return;
-            }
+          if (
+              nombrePasaje === PasajeFinalStarveil ||
+              etiquetasPasaje.includes("final")
+          ) {
+              MostrarResultadoRutaStarveil();
+              return;
+          }
 
-            MostrarEntradaNombreStarveil();
+          MostrarEntradaNombreStarveil();
 
-        }
-    );
+      }
+  );
 
 })();
 
@@ -3685,1001 +3685,1240 @@ function ReproducirSonidoBoton(tag) {
 
 (function () {
 
-    let magicAuroraLayer =
-        document.querySelector(".magic-aurora-layer");
+  let magicAuroraLayer =
+      document.querySelector(".magic-aurora-layer");
 
-    if (!magicAuroraLayer) {
+  if (!magicAuroraLayer) {
 
-        magicAuroraLayer =
-            document.createElement("div");
+      magicAuroraLayer =
+          document.createElement("div");
 
-        magicAuroraLayer.className =
-            "magic-aurora-layer";
+      magicAuroraLayer.className =
+          "magic-aurora-layer";
 
-        document.body.appendChild(
-            magicAuroraLayer
-        );
+      document.body.appendChild(
+          magicAuroraLayer
+      );
 
-    }
+  }
 
-    let lastMagicX = null;
-    let lastMagicY = null;
+  let lastMagicX = null;
+  let lastMagicY = null;
 
 
-    window.addEventListener("mousemove", function (event) {
+  window.addEventListener("mousemove", function (event) {
 
-        if (
-            typeof tags !== "function" ||
-            !tags().includes("magico")
-        ) {
-            lastMagicX = null;
-            lastMagicY = null;
-            return;
-        }
+      if (
+          typeof tags !== "function" ||
+          !tags().includes("magico")
+      ) {
+          lastMagicX = null;
+          lastMagicY = null;
+          return;
+      }
 
-        if (lastMagicX !== null && lastMagicY !== null) {
+      if (lastMagicX !== null && lastMagicY !== null) {
 
-            const deltaX = event.clientX - lastMagicX;
-            const deltaY = event.clientY - lastMagicY;
-            const distance = Math.hypot(deltaX, deltaY);
+          const deltaX = event.clientX - lastMagicX;
+          const deltaY = event.clientY - lastMagicY;
+          const distance = Math.hypot(deltaX, deltaY);
 
-            if (distance >= 3) {
+          if (distance >= 3) {
 
-                const trail = document.createElement("div");
+              const trail = document.createElement("div");
 
-                trail.className = "Mouse-magico";
-                trail.style.left = lastMagicX + "px";
-                trail.style.top = lastMagicY + "px";
-                trail.style.width = distance + "px";
-                trail.style.transform =
-                    "rotate(" + Math.atan2(deltaY, deltaX) + "rad)";
+              trail.className = "Mouse-magico";
+              trail.style.left = lastMagicX + "px";
+              trail.style.top = lastMagicY + "px";
+              trail.style.width = distance + "px";
+              trail.style.transform =
+                  "rotate(" + Math.atan2(deltaY, deltaX) + "rad)";
 
-                document.body.appendChild(trail);
+              document.body.appendChild(trail);
 
-                setTimeout(function () {
-                    trail.remove();
-                }, 550);
+              setTimeout(function () {
+                  trail.remove();
+              }, 550);
 
-            }
+          }
 
-        }
+      }
 
-        lastMagicX = event.clientX;
-        lastMagicY = event.clientY;
+      lastMagicX = event.clientX;
+      lastMagicY = event.clientY;
 
-        /* No crear partículas constantemente */
+      /* No crear partículas constantemente */
 
-        if (Math.random() > 0.3) {
-            return;
-        }
+      if (Math.random() > 0.3) {
+          return;
+      }
 
-        const star =
-            document.createElement("div");
+      const star =
+          document.createElement("div");
 
-        star.className =
-            "Brillitos-magicos";
+      star.className =
+          "Brillitos-magicos";
 
-        star.style.left =
-            event.clientX + "px";
+      star.style.left =
+          event.clientX + "px";
 
-        star.style.top =
-            event.clientY + "px";
+      star.style.top =
+          event.clientY + "px";
 
-        /* Tamaño aleatorio */
+      /* Tamaño aleatorio */
 
-        const size =
-            Math.random() * 8 + 4;
+      const size =
+          Math.random() * 8 + 4;
 
-        star.style.width =
-            size + "px";
+      star.style.width =
+          size + "px";
 
-        star.style.height =
-            size + "px";
+      star.style.height =
+          size + "px";
 
-        /* Dirección aleatoria */
+      /* Dirección aleatoria */
 
-        const destinationX =
-            (Math.random() - 0.5) * 50;
+      const destinationX =
+          (Math.random() - 0.5) * 50;
 
-        const destinationY =
-            (Math.random() - 0.5) * 50;
+      const destinationY =
+          (Math.random() - 0.5) * 50;
 
-        star.style.setProperty(
-            "--dx",
-            destinationX + "px"
-        );
+      star.style.setProperty(
+          "--dx",
+          destinationX + "px"
+      );
 
-        star.style.setProperty(
-            "--dy",
-            destinationY + "px"
-        );
+      star.style.setProperty(
+          "--dy",
+          destinationY + "px"
+      );
 
-        document.body.appendChild(star);
+      document.body.appendChild(star);
 
-        /* Eliminar partícula */
+      /* Eliminar partícula */
 
-        setTimeout(function () {
+      setTimeout(function () {
 
-            star.remove();
+          star.remove();
 
-        }, 800);
+      }, 800);
 
-    });
+  });
 
-    /* Efectos de click */
+  /* Efectos de click */
 
-    $(document).on("click", function (event) {
+  $(document).on("click", function (event) {
 
-        if (
-            typeof tags !== "function" ||
-            !tags().includes("magico")
-        ) {
-            return;
-        }
+      if (
+          typeof tags !== "function" ||
+          !tags().includes("magico")
+      ) {
+          return;
+      }
 
-        const x =
-            event.clientX;
+      const x =
+          event.clientX;
 
-        const y =
-            event.clientY;
+      const y =
+          event.clientY;
 
-        /* DESTELLO */
+      /* DESTELLO */
 
-        const flash =
-            document.createElement("div");
-        flash.className =
-            "Click-magico";
-        flash.style.left =
-            x + "px";
-        flash.style.top =
-            y + "px";
-        document.body.appendChild(flash);
+      const flash =
+          document.createElement("div");
+      flash.className =
+          "Click-magico";
+      flash.style.left =
+          x + "px";
+      flash.style.top =
+          y + "px";
+      document.body.appendChild(flash);
 
-        /* ANILLO */
+      /* ANILLO */
 
-        const ring =
-            document.createElement("div");
-        ring.className =
-            "anillo-click";
-        ring.style.left =
-            x + "px";
-        ring.style.top =
-            y + "px";
+      const ring =
+          document.createElement("div");
+      ring.className =
+          "anillo-click";
+      ring.style.left =
+          x + "px";
+      ring.style.top =
+          y + "px";
 
-        document.body.appendChild(ring);
+      document.body.appendChild(ring);
 
-        /* PARTÍCULAS */
+      /* PARTÍCULAS */
 
-        const particleCount = 12;
-        const clickParticles = [];
+      const particleCount = 12;
+      const clickParticles = [];
 
-        for (
-            let i = 0;
-            i < particleCount;
-            i++
-        ) {
+      for (
+          let i = 0;
+          i < particleCount;
+          i++
+      ) {
 
-            const particle =
-                document.createElement("div");
-            particle.className =
-                "particulas-magicas";
-            particle.style.left =
-                x + "px";
-            particle.style.top =
-                y + "px";
+          const particle =
+              document.createElement("div");
+          particle.className =
+              "particulas-magicas";
+          particle.style.left =
+              x + "px";
+          particle.style.top =
+              y + "px";
 
-            /* Dirección */
+          /* Dirección */
 
-            const angle =
-                Math.random() *
-                Math.PI *
-                2;
-            const distance =
-                25 +
-                Math.random() * 60;
-            const px =
-                Math.cos(angle) *
-                distance;
-            const py =
-                Math.sin(angle) *
-                distance;
-            particle.style.setProperty(
-                "--x",
-                px + "px"
-            );
-            particle.style.setProperty(
-                "--y",
-                py + "px"
-            );
+          const angle =
+              Math.random() *
+              Math.PI *
+              2;
+          const distance =
+              25 +
+              Math.random() * 60;
+          const px =
+              Math.cos(angle) *
+              distance;
+          const py =
+              Math.sin(angle) *
+              distance;
+          particle.style.setProperty(
+              "--x",
+              px + "px"
+          );
+          particle.style.setProperty(
+              "--y",
+              py + "px"
+          );
 
-            /* Tamaño */
+          /* Tamaño */
 
-            const size =
-                2 +
-                Math.random() * 5;
-            particle.style.width =
-                size + "px";
-            particle.style.height =
-                size + "px";
+          const size =
+              2 +
+              Math.random() * 5;
+          particle.style.width =
+              size + "px";
+          particle.style.height =
+              size + "px";
 
-            /* Velocidad */
+          /* Velocidad */
 
-            particle.style.animationDuration =
-                (
-                    0.6 +
-                    Math.random() * 0.4
-                ) + "s";
-            document.body.appendChild(
-                particle
-            );
-            clickParticles.push(particle);
-        }
-        setTimeout(function () {
-            flash.remove();
-            ring.remove();
-            clickParticles.forEach(function (particle) {
-                particle.remove();
-            });
-        }, 1000);
-    });
+          particle.style.animationDuration =
+              (
+                  0.6 +
+                  Math.random() * 0.4
+              ) + "s";
+          document.body.appendChild(
+              particle
+          );
+          clickParticles.push(particle);
+      }
+      setTimeout(function () {
+          flash.remove();
+          ring.remove();
+          clickParticles.forEach(function (particle) {
+              particle.remove();
+          });
+      }, 1000);
+  });
 })();
 
 /* ==========DIABLO ======== */
 
 Macro.add("diablo", {
-    tags: null,
-    handler: function () {
-        const diablo =
-            document.createElement("span");
-        diablo.className =
-            "diablo";
-        const diabloX =
-            parseFloat(this.args[0]);
-        const diabloY =
-            parseFloat(this.args[1]);
-        const diabloSize =
-            parseFloat(this.args[2]);
-        if (Number.isFinite(diabloX)) {
-            diablo.style.setProperty(
-                "--diablo-x",
-                diabloX + "px"
-            );
-        }
+  tags: null,
+  handler: function () {
+      const diablo =
+          document.createElement("span");
+      diablo.className =
+          "diablo";
+      const diabloX =
+          parseFloat(this.args[0]);
+      const diabloY =
+          parseFloat(this.args[1]);
+      const diabloSize =
+          parseFloat(this.args[2]);
+      if (Number.isFinite(diabloX)) {
+          diablo.style.setProperty(
+              "--diablo-x",
+              diabloX + "px"
+          );
+      }
 
-        if (Number.isFinite(diabloY)) {
-            diablo.style.setProperty(
-                "--diablo-y",
-                diabloY + "px"
-            );
-        }
-        if (Number.isFinite(diabloSize)) {
-            diablo.style.setProperty(
-                "--diablo-tamano",
-                diabloSize + "em"
-            );
-        }
-        diablo.tabIndex = 0;
-        new Wikifier(
-            diablo,
-            this.payload[0].contents
-        );
-        this.output.appendChild(diablo);
-    }
+      if (Number.isFinite(diabloY)) {
+          diablo.style.setProperty(
+              "--diablo-y",
+              diabloY + "px"
+          );
+      }
+      if (Number.isFinite(diabloSize)) {
+          diablo.style.setProperty(
+              "--diablo-tamano",
+              diabloSize + "em"
+          );
+      }
+      diablo.tabIndex = 0;
+      new Wikifier(
+          diablo,
+          this.payload[0].contents
+      );
+      this.output.appendChild(diablo);
+  }
 });
 
 Macro.add("diablo-texto-parrafos", {
-    tags: null,
-    handler: function () {
-        const parrafoDiablo =
-            document.createElement("p");
-        parrafoDiablo.className =
-            "diablo diablo-texto-parrafos";
-        const diabloX =
-            parseFloat(this.args[0]);
-        const diabloY =
-            parseFloat(this.args[1]);
-        const diabloSize =
-            parseFloat(this.args[2]);
-        if (Number.isFinite(diabloX)) {
-            parrafoDiablo.style.setProperty(
-                "--diablo-x",
-                diabloX + "px"
-            );
-        }
+  tags: null,
+  handler: function () {
+      const parrafoDiablo =
+          document.createElement("p");
+      parrafoDiablo.className =
+          "diablo diablo-texto-parrafos";
+      const diabloX =
+          parseFloat(this.args[0]);
+      const diabloY =
+          parseFloat(this.args[1]);
+      const diabloSize =
+          parseFloat(this.args[2]);
+      if (Number.isFinite(diabloX)) {
+          parrafoDiablo.style.setProperty(
+              "--diablo-x",
+              diabloX + "px"
+          );
+      }
 
-        if (Number.isFinite(diabloY)) {
-            parrafoDiablo.style.setProperty(
-                "--diablo-y",
-                diabloY + "px"
-            );
-        }
-        if (Number.isFinite(diabloSize)) {
-            parrafoDiablo.style.setProperty(
-                "--diablo-tamano",
-                diabloSize + "em"
-            );
-        }
-        parrafoDiablo.tabIndex = 0;
-        new Wikifier(
-            parrafoDiablo,
-            this.payload[0].contents
-        );
-        this.output.appendChild(parrafoDiablo);
-    }
+      if (Number.isFinite(diabloY)) {
+          parrafoDiablo.style.setProperty(
+              "--diablo-y",
+              diabloY + "px"
+          );
+      }
+      if (Number.isFinite(diabloSize)) {
+          parrafoDiablo.style.setProperty(
+              "--diablo-tamano",
+              diabloSize + "em"
+          );
+      }
+      parrafoDiablo.tabIndex = 0;
+      new Wikifier(
+          parrafoDiablo,
+          this.payload[0].contents
+      );
+      this.output.appendChild(parrafoDiablo);
+  }
 });
 
 /* https://www.joshwcomeau.com/react/animated-sparkles-in-react/ */
 
 function CrearDestelloDorado(imageContent) {
-    const secretLayer =
-        imageContent.querySelector(".diablo-layer");
-    const activeSecret =
-        imageContent.querySelector(
-            ".diablo:not(.Diablo-esperando)"
-        );
-    if (
-        !secretLayer ||
-        !activeSecret ||
-        secretLayer.querySelectorAll(
-            ".Destello-dorado"
-        ).length >= 12
-    ) {
-        return;
-    }
-    const goldenColors = [
-        "#fff4a8",
-        "#f6e27a",
-        "#ffc700",
-        "#e0a629"
-    ];
-    const sparkle =
-        document.createElement("span");
-    const size =
-        Math.round(Math.random() * 10 + 8);
-    const duration =
-        Math.round(Math.random() * 300 + 700);
-    sparkle.className =
-        "Destello-dorado";
-    sparkle.style.left =
-        Math.round(Math.random() * 88 + 6) + "%";
-    sparkle.style.top =
-        Math.round(Math.random() * 88 + 6) + "%";
-    sparkle.style.setProperty(
-        "--destello-tamano",
-        size + "px"
-    );
-    sparkle.style.setProperty(
-        "--destello-duracion",
-        duration + "ms"
-    );
-    sparkle.style.setProperty(
-        "--destello-color",
-        goldenColors[
-            Math.floor(
-                Math.random() * goldenColors.length
-            )
-        ]
-    );
-    secretLayer.appendChild(sparkle);
-    const removeSparkle = function () {
-        if (sparkle.isConnected) {
-            sparkle.remove();
-        }
-    };
-    sparkle.addEventListener(
-        "animationend",
-        removeSparkle,
-        { once: true }
-    );
-    setTimeout(
-        removeSparkle,
-        duration + 200
-    );
+  const secretLayer =
+      imageContent.querySelector(".diablo-layer");
+  const activeSecret =
+      imageContent.querySelector(
+          ".diablo:not(.Diablo-esperando)"
+      );
+  if (
+      !secretLayer ||
+      !activeSecret ||
+      secretLayer.querySelectorAll(
+          ".Destello-dorado"
+      ).length >= 12
+  ) {
+      return;
+  }
+  const goldenColors = [
+      "#fff4a8",
+      "#f6e27a",
+      "#ffc700",
+      "#e0a629"
+  ];
+  const sparkle =
+      document.createElement("span");
+  const size =
+      Math.round(Math.random() * 10 + 8);
+  const duration =
+      Math.round(Math.random() * 300 + 700);
+  sparkle.className =
+      "Destello-dorado";
+  sparkle.style.left =
+      Math.round(Math.random() * 88 + 6) + "%";
+  sparkle.style.top =
+      Math.round(Math.random() * 88 + 6) + "%";
+  sparkle.style.setProperty(
+      "--destello-tamano",
+      size + "px"
+  );
+  sparkle.style.setProperty(
+      "--destello-duracion",
+      duration + "ms"
+  );
+  sparkle.style.setProperty(
+      "--destello-color",
+      goldenColors[
+          Math.floor(
+              Math.random() * goldenColors.length
+          )
+      ]
+  );
+  secretLayer.appendChild(sparkle);
+  const removeSparkle = function () {
+      if (sparkle.isConnected) {
+          sparkle.remove();
+      }
+  };
+  sparkle.addEventListener(
+      "animationend",
+      removeSparkle,
+      { once: true }
+  );
+  setTimeout(
+      removeSparkle,
+      duration + 200
+  );
 }
 function PrepararDestellosDorados(imageContent) {
-    let sparkling = false;
-    let sparkleTimer = null;
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-    const scheduleSparkle = function () {
-        if (
-            !sparkling ||
-            !imageContent.isConnected ||
-            reducedMotion.matches
-        ) {
-            return;
-        }
-        sparkleTimer = setTimeout(
-            function () {
+  let sparkling = false;
+  let sparkleTimer = null;
+  const reducedMotion =
+      window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+      );
+  const scheduleSparkle = function () {
+      if (
+          !sparkling ||
+          !imageContent.isConnected ||
+          reducedMotion.matches
+      ) {
+          return;
+      }
+      sparkleTimer = setTimeout(
+          function () {
 
-                if (!sparkling) {
-                    return;
-                }
-                CrearDestelloDorado(imageContent);
-                scheduleSparkle();
-            },
-            Math.round(Math.random() * 300 + 120)
-        );
-    };
-    imageContent.addEventListener(
-        "mouseenter",
-        function () {
-            sparkling = true;
-            if (reducedMotion.matches) {
-                return;
-            }
-            CrearDestelloDorado(imageContent);
-            CrearDestelloDorado(imageContent);
-            scheduleSparkle();
-        }
-    );
+              if (!sparkling) {
+                  return;
+              }
+              CrearDestelloDorado(imageContent);
+              scheduleSparkle();
+          },
+          Math.round(Math.random() * 300 + 120)
+      );
+  };
+  imageContent.addEventListener(
+      "mouseenter",
+      function () {
+          sparkling = true;
+          if (reducedMotion.matches) {
+              return;
+          }
+          CrearDestelloDorado(imageContent);
+          CrearDestelloDorado(imageContent);
+          scheduleSparkle();
+      }
+  );
 
-    imageContent.addEventListener(
-        "mouseleave",
-        function () {
-            sparkling = false;
-            if (sparkleTimer) {
-                clearTimeout(sparkleTimer);
-                sparkleTimer = null;
-            }
-            imageContent
-                .querySelectorAll(".Destello-dorado")
-                .forEach(function (sparkle) {
-                    sparkle.remove();
-                });
-        }
-    );
+  imageContent.addEventListener(
+      "mouseleave",
+      function () {
+          sparkling = false;
+          if (sparkleTimer) {
+              clearTimeout(sparkleTimer);
+              sparkleTimer = null;
+          }
+          imageContent
+              .querySelectorAll(".Destello-dorado")
+              .forEach(function (sparkle) {
+                  sparkle.remove();
+              });
+      }
+  );
 
 }
 const PausasEscritura = {
-    magia: {
-        ",": [70, 0],
-        ":": [70, 0],
-        ";": [70, 0],
-        ".": [180, 0],
-        "?": [180, 0],
-        "!": [180, 0]
-    },
-    crt: {
-        ",": [180, 180],
-        ".": [350, 300],
-        "?": [300, 300],
-        "!": [300, 300],
-        ":": [200, 200],
-        ";": [250, 250],
-        "—": [150, 200],
-        "-": [150, 200]
-    }
+  magia: {
+      ",": [70, 0],
+      ":": [70, 0],
+      ";": [70, 0],
+      ".": [180, 0],
+      "?": [180, 0],
+      "!": [180, 0]
+  },
+  crt: {
+      ",": [180, 180],
+      ".": [350, 300],
+      "?": [300, 300],
+      "!": [300, 300],
+      ":": [200, 200],
+      ";": [250, 250],
+      "—": [150, 200],
+      "-": [150, 200]
+  }
 };
 
 function PausaPorSigno(character, style) {
-    const stylePauses =
-        PausasEscritura[style] || {};
-    const pause =
-        stylePauses[character];
-    if (!pause) {
-        return 0;
-    }
-    return pause[0] +
-        Math.random() * pause[1];
+  const stylePauses =
+      PausasEscritura[style] || {};
+  const pause =
+      stylePauses[character];
+  if (!pause) {
+      return 0;
+  }
+  return pause[0] +
+      Math.random() * pause[1];
+
+}
+
+function ReproducirSonidoEscritura(
+  soundFile,
+  existingSound
+) {
+
+  const file =
+      String(soundFile || "").trim();
+
+  if (!file) {
+      return Promise.resolve(false);
+  }
+
+  const sound =
+      existingSound || new Audio(file);
+
+  sound.volume = 0.8;
+
+  try {
+
+      const reproduction =
+          sound.play();
+
+      if (
+          !reproduction ||
+          typeof reproduction.then !== "function"
+      ) {
+          return Promise.resolve(true);
+      }
+
+      return reproduction
+          .then(function () {
+              return true;
+          })
+          .catch(function (error) {
+
+              console.log(
+                  "No se pudo reproducir el sonido: " +
+                  file,
+                  error && error.name
+              );
+
+              return false;
+
+          });
+
+  } catch (error) {
+
+      console.log(
+          "No se pudo reproducir el sonido: " +
+          file,
+          error && error.name
+      );
+
+      return Promise.resolve(false);
+
+  }
 
 }
 
 function ClickParaEscribir(event, options) {
-    const target =
-        event.target && event.target.closest
-            ? event.target
-            : null;
-    if (
-        target &&
-        target.closest(
-            "a, button, .link-internal"
-        )
-    ) {
-        return false;
-    }
-    if (options.estaEscribiendo()) {
-        options.revelar();
-        return true;
-    }
-    if (
-        options.estaTerminado &&
-        options.estaTerminado() &&
-        options.avanzar
-    ) {
-        options.avanzar();
-        return true;
-    }
-    return false;
+  const target =
+      event.target && event.target.closest
+          ? event.target
+          : null;
+  if (
+      target &&
+      target.closest(
+          "a, button, .link-internal"
+      )
+  ) {
+      return false;
+  }
+  if (options.estaEscribiendo()) {
+      options.revelar();
+      return true;
+  }
+  if (
+      options.estaTerminado &&
+      options.estaTerminado() &&
+      options.avanzar
+  ) {
+      options.avanzar();
+      return true;
+  }
+  return false;
 }
 /* Letras animadas */
 function LetrasMagia(textPage) {
 
-    if (
-        !textPage ||
-        textPage.dataset.magicInkReady === "true"
-    ) {
-        return;
-    }
+  if (
+      !textPage ||
+      textPage.dataset.magicInkReady === "true"
+  ) {
+      return;
+  }
 
-    textPage.dataset.magicInkReady = "true";
-    textPage.classList.add("Pagina-letras-magica");
+  textPage.dataset.magicInkReady = "true";
+  textPage.classList.add("Pagina-letras-magica");
 
-    const letterInterval = 24; /* VELOCIDAD DEL TEXTO IMPORTANTE!! */
+  const letterInterval = 24; /* VELOCIDAD DEL TEXTO IMPORTANTE!! */
 
-    const paragraphs = Array.from(
-        textPage.querySelectorAll("p")
-    );
+  const paragraphs = Array.from(
+      textPage.querySelectorAll("p")
+  );
 
-    const secretMessages = Array.from(
-        textPage.querySelectorAll(
-            ".diablo:not(.diablo-texto-parrafos)"
-        )
-    );
+  const secretMessages = Array.from(
+      textPage.querySelectorAll(
+          ".diablo:not(.diablo-texto-parrafos)"
+      )
+  );
 
-    const lastParagraph =
-        paragraphs[paragraphs.length - 1];
+  const sonidosPorParrafo =
+      new WeakMap();
 
-    if (lastParagraph) {
+  const reproducirMarcadorMagico =
+      function (marcador) {
 
-        secretMessages.forEach(function (secretMessage) {
+          if (
+              !marcador ||
+              marcador.reproducido
+          ) {
+              return;
+          }
 
-            secretMessage.classList.add(
-                "Diablo-esperando"
-            );
+          if (!marcador.sonido) {
+              marcador.sonido =
+                  new Audio(marcador.archivo);
+          }
 
-        });
+          ReproducirSonidoEscritura(
+              marcador.archivo,
+              marcador.sonido
+          ).then(function (reproducido) {
 
-    }
+              if (reproducido) {
+                  marcador.reproducido = true;
+              }
 
-    paragraphs.forEach(function (paragraph) {
+          });
 
-        let currentDelay = 120;
+      };
 
-        paragraph.classList.add(
-            "Parrafo-tinta"
-        );
+  const reproducirSonidosPendientes =
+      function (paragraph) {
 
-        const walker = document.createTreeWalker(
-            paragraph,
-            NodeFilter.SHOW_TEXT
-        );
+          const marcadores =
+              sonidosPorParrafo.get(paragraph) || [];
 
-        const textNodes = [];
-        let currentNode;
+          marcadores.forEach(
+              reproducirMarcadorMagico
+          );
 
-        while ((currentNode = walker.nextNode())) {
+      };
 
-            if (
-                currentNode.parentElement &&
-                currentNode.parentElement.closest(
-                    ".no-magic-writing, .diablo"
-                )
-            ) {
-                continue;
-            }
+  const lastParagraph =
+      paragraphs[paragraphs.length - 1];
 
-            textNodes.push(currentNode);
+  if (lastParagraph) {
 
-        }
+      secretMessages.forEach(function (secretMessage) {
 
-        textNodes.forEach(function (textNode) {
+          secretMessage.classList.add(
+              "Diablo-esperando"
+          );
 
-            const fragment =
-                document.createDocumentFragment();
+      });
 
-            const parts =
-                textNode.nodeValue.split(/(\s+)/);
+  }
 
-            parts.forEach(function (part) {
+  paragraphs.forEach(function (paragraph) {
 
-                if (!part) {
-                    return;
-                }
+      let currentDelay = 120;
 
-                if (/^\s+$/.test(part)) {
+      paragraph.classList.add(
+          "Parrafo-tinta"
+      );
 
-                    fragment.appendChild(
-                        document.createTextNode(part)
-                    );
+      const writingItems = [];
+      const marcadoresDelParrafo = [];
+      const marcadoresEnEspera = [];
 
-                    return;
+      const collectWritingItems = function (parent) {
 
-                }
+          Array.from(parent.childNodes).forEach(
+              function (child) {
 
-                const word =
-                    document.createElement("span");
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains(
+                          "crt-play-sound-marker"
+                      )
+                  ) {
 
-                word.className =
-                    "Palabra-tinta";
+                      writingItems.push({
+                          playSound: true,
+                          marker: child
+                      });
+                      return;
+                  }
 
-                Array.from(part).forEach(function (character) {
+                  if (child.nodeType === Node.TEXT_NODE) {
 
-                    const letter =
-                        document.createElement("span");
+                      if (
+                          child.parentElement &&
+                          child.parentElement.closest(
+                              ".no-magic-writing, .diablo"
+                          )
+                      ) {
+                          return;
+                      }
 
-                    letter.className =
-                        "Letra-tinta";
+                      writingItems.push({
+                          node: child
+                      });
+                      return;
+                  }
 
-                    letter.textContent = character;
+                  if (child.nodeType === Node.ELEMENT_NODE) {
 
-                    letter.style.setProperty(
-                        "--magic-ink-delay",
-                        currentDelay + "ms"
-                    );
+                      if (
+                          child.matches(
+                              ".no-magic-writing, .diablo"
+                          )
+                      ) {
+                          return;
+                      }
 
-                    word.appendChild(letter);
+                      collectWritingItems(child);
+                  }
 
-                    currentDelay += letterInterval;
+              }
+          );
 
-                    currentDelay +=
-                        PausaPorSigno(
-                            character,
-                            "magia"
-                        );
+      };
 
-                });
+      collectWritingItems(paragraph);
 
-                fragment.appendChild(word);
+      writingItems.forEach(function (item) {
 
-            });
+          if (item.playSound) {
 
-            textNode.parentNode.replaceChild(
-                fragment,
-                textNode
-            );
+              const marcador = {
+                  archivo:
+                      item.marker.dataset.sound,
+                  reproducido: false,
+                  sonido: null
+              };
 
-        });
+              marcadoresDelParrafo.push(
+                  marcador
+              );
 
-    });
+              marcadoresEnEspera.push(
+                  marcador
+              );
 
-    if (paragraphs.length === 0) {
-        return;
-    }
+              return;
+          }
 
-    let currentParagraph = 0;
-    let writing = false;
-    let finished = false;
+          const textNode =
+              item.node;
 
-    /* Click para revelar el texto. */
-    const finishParagraph = function () {
+          const fragment =
+              document.createDocumentFragment();
 
-        const paragraph =
-            paragraphs[currentParagraph];
+          const parts =
+              textNode.nodeValue.split(/(\s+)/);
 
-        if (!paragraph) {
-            return;
-        }
+          parts.forEach(function (part) {
 
-        paragraph.classList.add(
-            "Tinta-terminada"
-        );
+              if (!part) {
+                  return;
+              }
 
-        paragraph.classList.remove(
-            "Tinta-activa"
-        );
+              if (/^\s+$/.test(part)) {
 
-        writing = false;
-        finished = true;
+                  fragment.appendChild(
+                      document.createTextNode(part)
+                  );
 
-    };
+                  return;
 
-    const startParagraph = function () {
+              }
 
-        const paragraph =
-            paragraphs[currentParagraph];
+              const word =
+                  document.createElement("span");
 
-        if (!paragraph) {
-            return;
-        }
+              word.className =
+                  "Palabra-tinta";
 
-        if (
-            currentParagraph ===
-            paragraphs.length - 1
-        ) {
+              Array.from(part).forEach(function (character) {
 
-            secretMessages.forEach(
-                function (secretMessage) {
+                  const letter =
+                      document.createElement("span");
 
-                    secretMessage.classList.remove(
-                        "Diablo-esperando"
-                    );
+                  letter.className =
+                      "Letra-tinta";
 
-                }
-            );
+                  letter.textContent = character;
 
-        }
-        paragraph.classList.add(
-            "Tinta-visible"
-        );
+                  if (marcadoresEnEspera.length > 0) {
 
-        writing = true;
-        finished = false;
+                      const marcadoresDeEstaLetra =
+                          marcadoresEnEspera.splice(0);
 
-        const letters =
-            paragraph.querySelectorAll(
-                ".Letra-tinta"
-            );
+                      letter.addEventListener(
+                          "animationstart",
+                          function (event) {
 
-        const lastLetter =
-            letters[letters.length - 1];
+                              if (
+                                  event.animationName !==
+                                  "EscrituraTintaMagica"
+                              ) {
+                                  return;
+                              }
 
-        if (!lastLetter) {
-            finishParagraph();
-            return;
-        }
+                              marcadoresDeEstaLetra.forEach(
+                                  reproducirMarcadorMagico
+                              );
 
-        lastLetter.addEventListener(
-            "animationend",
-            function (event) {
+                          },
+                          { once: true }
+                      );
 
-                if (
-                    event.animationName ===
-                        "EscrituraTintaMagica" &&
-                    paragraph ===
-                        paragraphs[currentParagraph] &&
-                    writing
-                ) {
-                    finishParagraph();
-                }
+                  }
 
-            },
-            { once: true }
-        );
-        paragraph.classList.add(
-            "Tinta-activa"
-        );
+                  letter.style.setProperty(
+                      "--magic-ink-delay",
+                      currentDelay + "ms"
+                  );
 
-    };
-    const advanceParagraph = function () {
+                  word.appendChild(letter);
 
-        if (
-            currentParagraph >=
-            paragraphs.length - 1
-        ) {
-            return;
-        }
+                  currentDelay += letterInterval;
 
-        currentParagraph++;
-        startParagraph();
+                  currentDelay +=
+                      PausaPorSigno(
+                          character,
+                          "magia"
+                      );
 
-    };
+              });
 
-    if (
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches
-    ) {
+              fragment.appendChild(word);
 
-        secretMessages.forEach(function (secretMessage) {
+          });
 
-            secretMessage.classList.remove(
-                "Diablo-esperando"
-            );
+          textNode.parentNode.replaceChild(
+              fragment,
+              textNode
+          );
 
-        });
+      });
 
-        paragraphs.forEach(function (paragraph) {
+      sonidosPorParrafo.set(
+          paragraph,
+          marcadoresDelParrafo
+      );
 
-            paragraph.classList.add(
-                "Tinta-visible",
-                "Tinta-terminada"
-            );
+  });
 
-        });
+  if (paragraphs.length === 0) {
+      return;
+  }
 
-    } else {
+  let currentParagraph = 0;
+  let writing = false;
+  let finished = false;
 
-        startParagraph();
+  /* Click para revelar el texto. */
+  const finishParagraph = function () {
 
-        textPage.addEventListener(
-            "click",
-            function (event) {
+      const paragraph =
+          paragraphs[currentParagraph];
 
-                ClickParaEscribir(
-                    event,
-                    {
-                        estaEscribiendo: function () {
-                            return writing;
-                        },
-                        revelar: finishParagraph,
-                        estaTerminado: function () {
-                            return finished;
-                        },
-                        avanzar: advanceParagraph
-                    }
-                );
-            }
-        );
-    }
+      if (!paragraph) {
+          return;
+      }
+
+      reproducirSonidosPendientes(
+          paragraph
+      );
+
+      paragraph.classList.add(
+          "Tinta-terminada"
+      );
+
+      paragraph.classList.remove(
+          "Tinta-activa"
+      );
+
+      writing = false;
+      finished = true;
+
+  };
+
+  const startParagraph = function () {
+
+      const paragraph =
+          paragraphs[currentParagraph];
+
+      if (!paragraph) {
+          return;
+      }
+
+      if (
+          currentParagraph ===
+          paragraphs.length - 1
+      ) {
+
+          secretMessages.forEach(
+              function (secretMessage) {
+
+                  secretMessage.classList.remove(
+                      "Diablo-esperando"
+                  );
+
+              }
+          );
+
+      }
+      paragraph.classList.add(
+          "Tinta-visible"
+      );
+
+      writing = true;
+      finished = false;
+
+      const letters =
+          paragraph.querySelectorAll(
+              ".Letra-tinta"
+          );
+
+      const lastLetter =
+          letters[letters.length - 1];
+
+      if (!lastLetter) {
+          finishParagraph();
+          return;
+      }
+
+      lastLetter.addEventListener(
+          "animationend",
+          function (event) {
+
+              if (
+                  event.animationName ===
+                      "EscrituraTintaMagica" &&
+                  paragraph ===
+                      paragraphs[currentParagraph] &&
+                  writing
+              ) {
+                  finishParagraph();
+              }
+
+          },
+          { once: true }
+      );
+      paragraph.classList.add(
+          "Tinta-activa"
+      );
+
+  };
+  const advanceParagraph = function () {
+
+      if (
+          currentParagraph >=
+          paragraphs.length - 1
+      ) {
+          return;
+      }
+
+      currentParagraph++;
+      startParagraph();
+
+  };
+
+  if (
+      window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+      ).matches
+  ) {
+
+      secretMessages.forEach(function (secretMessage) {
+
+          secretMessage.classList.remove(
+              "Diablo-esperando"
+          );
+
+      });
+
+      paragraphs.forEach(function (paragraph) {
+
+          reproducirSonidosPendientes(
+              paragraph
+          );
+
+          paragraph.classList.add(
+              "Tinta-visible",
+              "Tinta-terminada"
+          );
+
+      });
+
+      textPage.addEventListener(
+          "click",
+          function (event) {
+
+              const target =
+                  event.target && event.target.closest
+                      ? event.target
+                      : null;
+
+              if (
+                  target &&
+                  target.closest(
+                      "a, button, .link-internal"
+                  )
+              ) {
+                  return;
+              }
+
+              paragraphs.forEach(
+                  reproducirSonidosPendientes
+              );
+
+          }
+      );
+
+  } else {
+
+      startParagraph();
+
+      textPage.addEventListener(
+          "click",
+          function (event) {
+
+              const paragraph =
+                  paragraphs[currentParagraph];
+
+              const clickHandled =
+                  ClickParaEscribir(
+                      event,
+                      {
+                          estaEscribiendo: function () {
+                              return writing;
+                          },
+                          revelar: finishParagraph,
+                          estaTerminado: function () {
+                              return finished;
+                          },
+                          avanzar: advanceParagraph
+                      }
+                  );
+
+              if (clickHandled) {
+
+                  reproducirSonidosPendientes(
+                      paragraph
+                  );
+
+              }
+          }
+      );
+  }
 }
+
 
 Macro.add("magicpage", {
 
-    tags: null,
+  tags: null,
 
-    handler: function () {
-        const textSide = String(
-            this.args[0] || "left"
-        ).toLowerCase();
-        if (
-            textSide !== "left" &&
-            textSide !== "right"
-        ) {
-            return this.error(
-                'El lado debe ser "left" o "right".'
-            );
+  handler: function () {
+      const textSide = String(
+          this.args[0] || "left"
+      ).toLowerCase();
+      if (
+          textSide !== "left" &&
+          textSide !== "right"
+      ) {
+          return this.error(
+              'El lado debe ser "left" o "right".'
+          );
 
-        }
+      }
 
-        /* Imagen */
-        const imageSource =
-            this.args.length > 1
-                ? String(this.args[1])
-                : "";
-        const thirdArgument =
-            this.args.length > 2
-                ? this.args[2]
-                : null;
-        const hasImageDescription =
-            thirdArgument !== null &&
-            !Number.isFinite(Number(thirdArgument));
-        const imageDescription =
-            hasImageDescription
-                ? String(thirdArgument)
-                : "";
-        const imageXIndex =
-            hasImageDescription ? 3 : 2;
-        const imageYIndex =
-            hasImageDescription ? 4 : 3;
-        const imageX =
-            this.args.length > imageXIndex
-                ? parseFloat(this.args[imageXIndex])
-                : null;
-        const imageY =
-            this.args.length > imageYIndex
-                ? parseFloat(this.args[imageYIndex])
-                : null;
+      /* Imagen */
+      const imageSource =
+          this.args.length > 1
+              ? String(this.args[1])
+              : "";
+      const thirdArgument =
+          this.args.length > 2
+              ? this.args[2]
+              : null;
+      const hasImageDescription =
+          thirdArgument !== null &&
+          !Number.isFinite(Number(thirdArgument));
+      const imageDescription =
+          hasImageDescription
+              ? String(thirdArgument)
+              : "";
+      const imageXIndex =
+          hasImageDescription ? 3 : 2;
+      const imageYIndex =
+          hasImageDescription ? 4 : 3;
+      const imageX =
+          this.args.length > imageXIndex
+              ? parseFloat(this.args[imageXIndex])
+              : null;
+      const imageY =
+          this.args.length > imageYIndex
+              ? parseFloat(this.args[imageYIndex])
+              : null;
 
-        /* Contenedores para texto e imagen */
-        const layout =
-            document.createElement("section");
+      /* Contenedores para texto e imagen */
+      const layout =
+          document.createElement("section");
 
-        layout.className =
-            "page-container magic-text-" +
-            textSide;
-        layout.dataset.textSide = textSide;
-        if (Number.isFinite(imageX)) {
-            layout.style.setProperty(
-                "--magic-image-x",
-                imageX + "px"
-            );
-        }
-        if (Number.isFinite(imageY)) {
-            layout.style.setProperty(
-                "--magic-image-y",
-                imageY + "px"
-            );
-        }
+      layout.className =
+          "page-container magic-text-" +
+          textSide;
+      layout.dataset.textSide = textSide;
+      if (Number.isFinite(imageX)) {
+          layout.style.setProperty(
+              "--magic-image-x",
+              imageX + "px"
+          );
+      }
+      if (Number.isFinite(imageY)) {
+          layout.style.setProperty(
+              "--magic-image-y",
+              imageY + "px"
+          );
+      }
 
-        const textPage =
-            document.createElement("div");
+      const textPage =
+          document.createElement("div");
 
-        textPage.className =
-            "page " + textSide + "-page";
+      textPage.className =
+          "page " + textSide + "-page";
 
-        const textContent =
-            document.createElement("div");
+      const textContent =
+          document.createElement("div");
 
-        textContent.className =
-            "magic-page-text";
+      textContent.className =
+          "magic-page-text";
 
-        new Wikifier(
-            textContent,
-            this.payload[0].contents
-        );
+      new Wikifier(
+          textContent,
+          this.payload[0].contents
+      );
 
-        LetrasMagia(textContent);
+      LetrasMagia(textContent);
 
-        textPage.appendChild(textContent);
+      textPage.appendChild(textContent);
 
-        const imagePage =
-            document.createElement("div");
+      const imagePage =
+          document.createElement("div");
 
-        imagePage.className =
-            "page " +
-            (textSide === "left"
-                ? "right-page"
-                : "left-page");
+      imagePage.className =
+          "page " +
+          (textSide === "left"
+              ? "right-page"
+              : "left-page");
 
-        const imageContent =
-            document.createElement("figure");
+      const imageContent =
+          document.createElement("figure");
 
-        imageContent.className =
-            "magic-page-image";
+      imageContent.className =
+          "magic-page-image";
 
-        if (imageSource) {
+      if (imageSource) {
 
-            const image =
-                document.createElement("img");
+          const image =
+              document.createElement("img");
 
-            image.src = imageSource;
-            image.alt = imageDescription;
-            image.loading = "eager";
-            image.decoding = "async";
+          image.src = imageSource;
+          image.alt = imageDescription;
+          image.loading = "eager";
+          image.decoding = "async";
 
-            imageContent.appendChild(image);
+          imageContent.appendChild(image);
 
-        } else {
+      } else {
 
-            imageContent.classList.add("is-empty");
-            imageContent.setAttribute(
-                "aria-hidden",
-                "true"
-            );
+          imageContent.classList.add("is-empty");
+          imageContent.setAttribute(
+              "aria-hidden",
+              "true"
+          );
 
-        }
+      }
 
-        const secretMessages = Array.from(
-            textContent.querySelectorAll(
-                ".diablo:not(.diablo-texto-parrafos)"
-            )
-        );
+      const secretMessages = Array.from(
+          textContent.querySelectorAll(
+              ".diablo:not(.diablo-texto-parrafos)"
+          )
+      );
 
-        if (secretMessages.length > 0) {
+      if (secretMessages.length > 0) {
 
-            const secretLayer =
-                document.createElement("div");
+          const secretLayer =
+              document.createElement("div");
 
-            secretLayer.className =
-                "diablo-layer";
+          secretLayer.className =
+              "diablo-layer";
 
-            secretMessages.forEach(function (secretMessage) {
+          secretMessages.forEach(function (secretMessage) {
 
-                secretLayer.appendChild(
-                    secretMessage
-                );
+              secretLayer.appendChild(
+                  secretMessage
+              );
 
-            });
+          });
 
-            imageContent.appendChild(secretLayer);
-            imageContent.classList.add(
-                "has-secret-message"
-            );
+          imageContent.appendChild(secretLayer);
+          imageContent.classList.add(
+              "has-secret-message"
+          );
 
-            PrepararDestellosDorados(
-                imageContent
-            );
+          PrepararDestellosDorados(
+              imageContent
+          );
 
-            imageContent.classList.remove(
-                "is-empty"
-            );
+          imageContent.classList.remove(
+              "is-empty"
+          );
 
-            imageContent.removeAttribute(
-                "aria-hidden"
-            );
+          imageContent.removeAttribute(
+              "aria-hidden"
+          );
 
-        }
+      }
 
-        imagePage.appendChild(imageContent);
+      imagePage.appendChild(imageContent);
 
-        if (textSide === "left") {
+      if (textSide === "left") {
 
-            layout.appendChild(textPage);
-            layout.appendChild(imagePage);
+          layout.appendChild(textPage);
+          layout.appendChild(imagePage);
 
-        } else {
+      } else {
 
-            layout.appendChild(imagePage);
-            layout.appendChild(textPage);
+          layout.appendChild(imagePage);
+          layout.appendChild(textPage);
 
-        }
+      }
 
-        this.output.appendChild(layout);
+      this.output.appendChild(layout);
 
-    }
+  }
 
 });
 
@@ -4687,424 +4926,424 @@ Macro.add("magicpage", {
 
 (function () {
 
-    let magicPageTurning = false;
+  let magicPageTurning = false;
 
-    const bookFrames = [
-        ["0%", "0%"],
-        ["25%", "0%"],
-        ["50%", "0%"],
-        ["75%", "0%"],
-        ["100%", "0%"],
-        ["0%", "100%"],
-        ["25%", "100%"]
-    ];
+  const bookFrames = [
+      ["0%", "0%"],
+      ["25%", "0%"],
+      ["50%", "0%"],
+      ["75%", "0%"],
+      ["100%", "0%"],
+      ["0%", "100%"],
+      ["25%", "100%"]
+  ];
 
-    function setBookFrame(sprite, frame) {
+  function setBookFrame(sprite, frame) {
 
-        const position =
-            bookFrames[frame] || bookFrames[0];
+      const position =
+          bookFrames[frame] || bookFrames[0];
 
-        sprite.style.backgroundPosition =
-            position[0] + " " + position[1];
+      sprite.style.backgroundPosition =
+          position[0] + " " + position[1];
 
-    }
+  }
 
-    function ensureBookSourceLink() {
+  function ensureBookSourceLink() {
 
-        let sourceLink =
-            document.querySelector(
-                ".book-source-link"
-            );
+      let sourceLink =
+          document.querySelector(
+              ".book-source-link"
+          );
 
-        if (!sourceLink) {
+      if (!sourceLink) {
 
-            sourceLink =
-                document.createElement("a");
+          sourceLink =
+              document.createElement("a");
 
-            sourceLink.className =
-                "book-source-link";
+          sourceLink.className =
+              "book-source-link";
 
-            sourceLink.href =
-                "https://codepen.io/Maseone/pen/WbbGxeO";
+          sourceLink.href =
+              "https://codepen.io/Maseone/pen/WbbGxeO";
 
-            sourceLink.target = "_blank";
-            sourceLink.rel = "noopener noreferrer";
-            sourceLink.textContent =
-                "Source code: https://codepen.io/Maseone/pen/WbbGxeO";
+          sourceLink.target = "_blank";
+          sourceLink.rel = "noopener noreferrer";
+          sourceLink.textContent =
+              "Source code: https://codepen.io/Maseone/pen/WbbGxeO";
 
-            document.body.appendChild(sourceLink);
+          document.body.appendChild(sourceLink);
 
-        }
+      }
 
-    }
+  }
 
-    function removeBookSourceLink() {
+  function removeBookSourceLink() {
 
-        const sourceLink =
-            document.querySelector(
-                ".book-source-link"
-            );
+      const sourceLink =
+          document.querySelector(
+              ".book-source-link"
+          );
 
-        if (sourceLink) {
-            sourceLink.remove();
-        }
+      if (sourceLink) {
+          sourceLink.remove();
+      }
 
-    }
+  }
 
-    function ensureMagicBook() {
+  function ensureMagicBook() {
 
-        const passages =
-            document.querySelector("#passages");
+      const passages =
+          document.querySelector("#passages");
 
-        if (!passages) {
-            return null;
-        }
+      if (!passages) {
+          return null;
+      }
 
-        ensureBookSourceLink();
+      ensureBookSourceLink();
 
-        let sprite =
-            passages.querySelector(
-                ":scope > .sprite"
-            );
+      let sprite =
+          passages.querySelector(
+              ":scope > .sprite"
+          );
 
-        if (!sprite) {
+      if (!sprite) {
 
-            sprite =
-                document.createElement("div");
+          sprite =
+              document.createElement("div");
 
-            sprite.className =
-                "sprite";
+          sprite.className =
+              "sprite";
 
-            sprite.setAttribute(
-                "aria-hidden",
-                "true"
-            );
+          sprite.setAttribute(
+              "aria-hidden",
+              "true"
+          );
 
-            passages.insertBefore(
-                sprite,
-                passages.firstChild
-            );
+          passages.insertBefore(
+              sprite,
+              passages.firstChild
+          );
 
-        }
+      }
 
-        sprite.classList.remove(
-            "turn-left",
-            "turn-right"
-        );
+      sprite.classList.remove(
+          "turn-left",
+          "turn-right"
+      );
 
-        passages.classList.remove(
-            "magic-book-flipping"
-        );
+      passages.classList.remove(
+          "magic-book-flipping"
+      );
 
-        setBookFrame(sprite, 0);
+      setBookFrame(sprite, 0);
 
-        const activePassage =
-            passages.querySelector(
-                ".passage.magico"
-            );
+      const activePassage =
+          passages.querySelector(
+              ".passage.magico"
+          );
 
-        let controls =
-            passages.querySelector(
-                ".Controles-libro-magico"
-            );
+      let controls =
+          passages.querySelector(
+              ".Controles-libro-magico"
+          );
 
-        if (!controls) {
+      if (!controls) {
 
-            controls = activePassage
-                ? activePassage.querySelector(
-                    ".choice-container"
-                )
-                : null;
+          controls = activePassage
+              ? activePassage.querySelector(
+                  ".choice-container"
+              )
+              : null;
 
-            if (controls) {
+          if (controls) {
 
-                controls.classList.add(
-                    "Controles-libro-magico"
-                );
+              controls.classList.add(
+                  "Controles-libro-magico"
+              );
 
-                passages.appendChild(controls);
+              passages.appendChild(controls);
 
-            }
+          }
 
-        }
+      }
 
-        if (controls) {
+      if (controls) {
 
-            const links = Array.from(
-                controls.querySelectorAll(
-                    ".option-magic a.link-internal"
-                )
-            );
+          const links = Array.from(
+              controls.querySelectorAll(
+                  ".option-magic a.link-internal"
+              )
+          );
 
-            links.forEach(function (link, index) {
+          links.forEach(function (link, index) {
 
-                if (!link.dataset.choiceLabel) {
+              if (!link.dataset.choiceLabel) {
 
-                    link.dataset.choiceLabel =
-                        link.textContent.trim();
+                  link.dataset.choiceLabel =
+                      link.textContent.trim();
 
-                }
+              }
 
-                link.classList.add(
-                    "Flecha-libro-magico"
-                );
+              link.classList.add(
+                  "Flecha-libro-magico"
+              );
 
-                link.classList.remove(
-                    "magic-book-arrow-left",
-                    "magic-book-arrow-right"
-                );
+              link.classList.remove(
+                  "magic-book-arrow-left",
+                  "magic-book-arrow-right"
+              );
 
-                link.classList.add(
-                    index === 0
-                        ? "magic-book-arrow-left"
-                        : "magic-book-arrow-right"
-                );
+              link.classList.add(
+                  index === 0
+                      ? "magic-book-arrow-left"
+                      : "magic-book-arrow-right"
+              );
 
-                link.setAttribute(
-                    "aria-label",
-                    link.dataset.choiceLabel
-                );
+              link.setAttribute(
+                  "aria-label",
+                  link.dataset.choiceLabel
+              );
 
-                let choiceLabel =
-                    link.querySelector(
-                        ".magic-book-choice-label"
-                    );
+              let choiceLabel =
+                  link.querySelector(
+                      ".magic-book-choice-label"
+                  );
 
-                if (!choiceLabel) {
+              if (!choiceLabel) {
 
-                    link.textContent = "";
+                  link.textContent = "";
 
-                    choiceLabel =
-                        document.createElement("span");
+                  choiceLabel =
+                      document.createElement("span");
 
-                    choiceLabel.className =
-                        "magic-book-choice-label";
+                  choiceLabel.className =
+                      "magic-book-choice-label";
 
-                    link.appendChild(choiceLabel);
+                  link.appendChild(choiceLabel);
 
-                }
+              }
 
-                choiceLabel.textContent =
-                    link.dataset.choiceLabel;
+              choiceLabel.textContent =
+                  link.dataset.choiceLabel;
 
-            });
+          });
 
-        }
+      }
 
-        const bookTitle = activePassage
-            ? activePassage.querySelector("h1")
-            : null;
+      const bookTitle = activePassage
+          ? activePassage.querySelector("h1")
+          : null;
 
-        if (bookTitle) {
+      if (bookTitle) {
 
-            bookTitle.classList.add(
-                "magic-book-title"
-            );
+          bookTitle.classList.add(
+              "magic-book-title"
+          );
 
-            const textPage =
-                activePassage.querySelector(
-                    ".magic-page-text"
-                );
+          const textPage =
+              activePassage.querySelector(
+                  ".magic-page-text"
+              );
 
-            if (
-                textPage &&
-                bookTitle.parentElement !== textPage
-            ) {
+          if (
+              textPage &&
+              bookTitle.parentElement !== textPage
+          ) {
 
-                textPage.insertBefore(
-                    bookTitle,
-                    textPage.firstChild
-                );
+              textPage.insertBefore(
+                  bookTitle,
+                  textPage.firstChild
+              );
 
-            }
+          }
 
-        }
+      }
 
-        return sprite;
+      return sprite;
 
-    }
+  }
 
-    $(document).off(
-        ":passagedisplay.magicBook"
-    );
+  $(document).off(
+      ":passagedisplay.magicBook"
+  );
 
-    $(document).on(
-        ":passagedisplay.magicBook",
-        function () {
+  $(document).on(
+      ":passagedisplay.magicBook",
+      function () {
 
-            magicPageTurning = false;
+          magicPageTurning = false;
 
-            const passages =
-                document.querySelector("#passages");
+          const passages =
+              document.querySelector("#passages");
 
-            if (
-                typeof tags === "function" &&
-                tags().includes("magico")
-            ) {
+          if (
+              typeof tags === "function" &&
+              tags().includes("magico")
+          ) {
 
-                ensureMagicBook();
+              ensureMagicBook();
 
-            } else if (passages) {
+          } else if (passages) {
 
-                const oldSprite =
-                    passages.querySelector(
-                        ":scope > .sprite"
-                    );
+              const oldSprite =
+                  passages.querySelector(
+                      ":scope > .sprite"
+                  );
 
-                if (oldSprite) {
-                    oldSprite.remove();
-                }
+              if (oldSprite) {
+                  oldSprite.remove();
+              }
 
-                passages.classList.remove(
-                    "magic-book-flipping"
-                );
+              passages.classList.remove(
+                  "magic-book-flipping"
+              );
 
-                removeBookSourceLink();
+              removeBookSourceLink();
 
-            }
+          }
 
-        }
-    );
+      }
+  );
 
-    $(document).off(
-        ":passagestart.magicBookControls"
-    );
+  $(document).off(
+      ":passagestart.magicBookControls"
+  );
 
-    $(document).on(
-        ":passagestart.magicBookControls",
-        function () {
+  $(document).on(
+      ":passagestart.magicBookControls",
+      function () {
 
-            document
-                .querySelectorAll(
-                    "#passages > .Controles-libro-magico"
-                )
-                .forEach(function (element) {
+          document
+              .querySelectorAll(
+                  "#passages > .Controles-libro-magico"
+              )
+              .forEach(function (element) {
 
-                    element.remove();
+                  element.remove();
 
-                });
+              });
 
-        }
-    );
+      }
+  );
 
-    document.addEventListener(
-        "click",
-        function (event) {
+  document.addEventListener(
+      "click",
+      function (event) {
 
-            const link = event.target.closest(
-                ".choice-container .option-magic a.link-internal"
-            );
-            if (
-                !link ||
-                magicPageTurning ||
-                typeof tags !== "function" ||
-                !tags().includes("magico")
-            ) {
-                return;
-            }
+          const link = event.target.closest(
+              ".choice-container .option-magic a.link-internal"
+          );
+          if (
+              !link ||
+              magicPageTurning ||
+              typeof tags !== "function" ||
+              !tags().includes("magico")
+          ) {
+              return;
+          }
 
-            const destination =
-                link.getAttribute("data-passage");
+          const destination =
+              link.getAttribute("data-passage");
 
-            const option =
-                link.closest(".option-magic");
+          const option =
+              link.closest(".option-magic");
 
-            const choiceContainer =
-                link.closest(".choice-container");
+          const choiceContainer =
+              link.closest(".choice-container");
 
-            const passages =
-                document.querySelector("#passages");
+          const passages =
+              document.querySelector("#passages");
 
-            const sprite =
-                ensureMagicBook();
+          const sprite =
+              ensureMagicBook();
 
-            if (
-                !destination ||
-                !option ||
-                !choiceContainer ||
-                !passages ||
-                !sprite
-            ) {
-                return;
-            }
+          if (
+              !destination ||
+              !option ||
+              !choiceContainer ||
+              !passages ||
+              !sprite
+          ) {
+              return;
+          }
 
-            event.preventDefault();
-            event.stopImmediatePropagation();
+          event.preventDefault();
+          event.stopImmediatePropagation();
 
-            magicPageTurning = true;
+          magicPageTurning = true;
 
-            const options = Array.from(
-                choiceContainer.querySelectorAll(".option-magic")
-            );
+          const options = Array.from(
+              choiceContainer.querySelectorAll(".option-magic")
+          );
 
-            const direction =
-                option === options[0]
-                    ? "left"
-                    : "right";
+          const direction =
+              option === options[0]
+                  ? "left"
+                  : "right";
 
-            sprite.classList.add(
-                direction === "left"
-                    ? "turn-left"
-                    : "turn-right"
-            );
+          sprite.classList.add(
+              direction === "left"
+                  ? "turn-left"
+                  : "turn-right"
+          );
 
-            passages.classList.add(
-                "magic-book-flipping"
-            );
+          passages.classList.add(
+              "magic-book-flipping"
+          );
 
-            ReproducirSonidoBoton("magico");
+          ReproducirSonidoBoton("magico");
 
-            const reducedMotion =
-                window.matchMedia(
-                    "(prefers-reduced-motion: reduce)"
-                ).matches;
+          const reducedMotion =
+              window.matchMedia(
+                  "(prefers-reduced-motion: reduce)"
+              ).matches;
 
-            if (reducedMotion) {
+          if (reducedMotion) {
 
-                setTimeout(function () {
+              setTimeout(function () {
 
-                    magicPageTurning = false;
-                    Engine.play(destination);
+                  magicPageTurning = false;
+                  Engine.play(destination);
 
-                }, 80);
+              }, 80);
 
-                return;
-            }
+              return;
+          }
 
-            let currentFrame = 0;
+          let currentFrame = 0;
 
-            function advanceBookFrame() {
+          function advanceBookFrame() {
 
-                currentFrame++;
+              currentFrame++;
 
-                if (currentFrame >= bookFrames.length) {
+              if (currentFrame >= bookFrames.length) {
 
-                    magicPageTurning = false;
-                    Engine.play(destination);
-                    return;
+                  magicPageTurning = false;
+                  Engine.play(destination);
+                  return;
 
-                }
+              }
 
-                setBookFrame(
-                    sprite,
-                    currentFrame
-                );
+              setBookFrame(
+                  sprite,
+                  currentFrame
+              );
 
-                setTimeout(
-                    advanceBookFrame,
-                    1000 / 12
-                );
+              setTimeout(
+                  advanceBookFrame,
+                  1000 / 12
+              );
 
-            }
+          }
 
-            setTimeout(
-                advanceBookFrame,
-                1000 / 12
-            );
+          setTimeout(
+              advanceBookFrame,
+              1000 / 12
+          );
 
-        },
-        true
-    );
+      },
+      true
+  );
 
 })();
 
@@ -5112,192 +5351,192 @@ Macro.add("magicpage", {
 
 (function () {
 
-    const aura =
-        document.createElement("div");
+  const aura =
+      document.createElement("div");
 
-    aura.className =
-        "crt-cursor-aura";
+  aura.className =
+      "crt-cursor-aura";
 
-    const dot =
-        document.createElement("div");
+  const dot =
+      document.createElement("div");
 
-    dot.className =
-        "crt-cursor-dot";
+  dot.className =
+      "crt-cursor-dot";
 
-    document.body.appendChild(aura);
-    document.body.appendChild(dot);
+  document.body.appendChild(aura);
+  document.body.appendChild(dot);
 
-    /* Estela */
+  /* Estela */
 
-    let lastGhostX = 0;
-    let lastGhostY = 0;
+  let lastGhostX = 0;
+  let lastGhostY = 0;
 
-    /* Distancia mínima entre fantasmas. */
+  /* Distancia mínima entre fantasmas. */
 
-    const ghostSpacing = 3;
+  const ghostSpacing = 3;
 
-    function createCRTGhost(x, y) {
+  function createCRTGhost(x, y) {
 
-        const ghost =
-            document.createElement("div");
+      const ghost =
+          document.createElement("div");
 
-        ghost.className =
-            "crt-cursor-ghost";
+      ghost.className =
+          "crt-cursor-ghost";
 
-        ghost.style.left =
-            x + "px";
+      ghost.style.left =
+          x + "px";
 
-        ghost.style.top =
-            y + "px";
+      ghost.style.top =
+          y + "px";
 
-        /* Variación */
+      /* Variación */
 
-        const size =
-            18 +
-            Math.random() * 10;
+      const size =
+          18 +
+          Math.random() * 10;
 
-        ghost.style.width =
-            size + "px";
+      ghost.style.width =
+          size + "px";
 
-        ghost.style.height =
-            size + "px";
+      ghost.style.height =
+          size + "px";
 
-        /* Variación de intensidad. */
+      /* Variación de intensidad. */
 
-        const opacity =
-            0.45 +
-            Math.random() * 0.25;
+      const opacity =
+          0.45 +
+          Math.random() * 0.25;
 
-        ghost.style.setProperty(
-            "--ghost-opacity",
-            opacity
-        );
+      ghost.style.setProperty(
+          "--ghost-opacity",
+          opacity
+      );
 
-        document.body.appendChild(
-            ghost
-        );
+      document.body.appendChild(
+          ghost
+      );
 
-        /* Eliminar después de la animación. */
+      /* Eliminar después de la animación. */
 
-        setTimeout(function () {
+      setTimeout(function () {
 
-            ghost.remove();
+          ghost.remove();
 
-        }, 3000);
+      }, 3000);
 
-    }
+  }
 
-    document.addEventListener(
-        "mousemove",
-        function (event) {
+  document.addEventListener(
+      "mousemove",
+      function (event) {
 
-            const isCRT =
-                typeof tags === "function" &&
-                tags().includes("crt");
+          const isCRT =
+              typeof tags === "function" &&
+              tags().includes("crt");
 
-            if (!isCRT) {
+          if (!isCRT) {
 
-                document.body.classList.remove(
-                    "crt-mouse-active"
-                );
+              document.body.classList.remove(
+                  "crt-mouse-active"
+              );
 
-                return;
+              return;
 
-            }
-            document.body.classList.add(
-                "crt-mouse-active"
-            );
-            const x =
-                event.clientX;
-            const y =
-                event.clientY;
-            aura.style.left =
-                x + "px";
-            aura.style.top =
-                y + "px";
-            dot.style.left =
-                x + "px";
-            dot.style.top =
-                y + "px";
-            if (
-                lastGhostX === 0 &&
-                lastGhostY === 0
-            ) {
-                lastGhostX = x;
-                lastGhostY = y;
-                return;
-            }
-            const dx =
-                x - lastGhostX;
-            const dy =
-                y - lastGhostY;
-            const distance =
-                Math.sqrt(
-                    dx * dx +
-                    dy * dy
-                );
-            if (
-                distance >=
-                ghostSpacing
-            ) {
+          }
+          document.body.classList.add(
+              "crt-mouse-active"
+          );
+          const x =
+              event.clientX;
+          const y =
+              event.clientY;
+          aura.style.left =
+              x + "px";
+          aura.style.top =
+              y + "px";
+          dot.style.left =
+              x + "px";
+          dot.style.top =
+              y + "px";
+          if (
+              lastGhostX === 0 &&
+              lastGhostY === 0
+          ) {
+              lastGhostX = x;
+              lastGhostY = y;
+              return;
+          }
+          const dx =
+              x - lastGhostX;
+          const dy =
+              y - lastGhostY;
+          const distance =
+              Math.sqrt(
+                  dx * dx +
+                  dy * dy
+              );
+          if (
+              distance >=
+              ghostSpacing
+          ) {
 
-                createCRTGhost(
-                    lastGhostX,
-                    lastGhostY
-                );
+              createCRTGhost(
+                  lastGhostX,
+                  lastGhostY
+              );
 
-                lastGhostX = x;
-                lastGhostY = y;
+              lastGhostX = x;
+              lastGhostY = y;
 
-            }
+          }
 
-        }
-    );
+      }
+  );
 
-    /* Efecto de click */
+  /* Efecto de click */
 
-    document.addEventListener(
-        "click",
-        function () {
-            const isCRT =
-                typeof tags === "function" &&
-                tags().includes("crt");
-            if (!isCRT) {
-                return;
-            }
-            aura.classList.add(
-                "click"
-            );
-            setTimeout(function () {
-                aura.classList.remove(
-                    "click"
-                );
-            }, 180);
+  document.addEventListener(
+      "click",
+      function () {
+          const isCRT =
+              typeof tags === "function" &&
+              tags().includes("crt");
+          if (!isCRT) {
+              return;
+          }
+          aura.classList.add(
+              "click"
+          );
+          setTimeout(function () {
+              aura.classList.remove(
+                  "click"
+              );
+          }, 180);
 
-        }
-    );
+      }
+  );
 
-    $(document).on(
-        ":passagestart",
-        function () {
+  $(document).on(
+      ":passagestart",
+      function () {
 
-            const isCRT =
-                typeof tags === "function" &&
-                tags().includes("crt");
+          const isCRT =
+              typeof tags === "function" &&
+              tags().includes("crt");
 
-            if (!isCRT) {
+          if (!isCRT) {
 
-                document.body.classList.remove(
-                    "crt-mouse-active"
-                );
+              document.body.classList.remove(
+                  "crt-mouse-active"
+              );
 
-            }
+          }
 
-            lastGhostX = 0;
-            lastGhostY = 0;
+          lastGhostX = 0;
+          lastGhostY = 0;
 
-        }
-    );
+      }
+  );
 
 })();
 
@@ -5305,916 +5544,902 @@ Macro.add("magicpage", {
 
 (function () {
 
-    let currentParagraph = 0;
-    let typing = false;
-    let finished = false;
-    let paragraphs = [];
-    let typingTimer = null;
-    let ejecutarMarcadoresPendientes = null;
+  let currentParagraph = 0;
+  let typing = false;
+  let finished = false;
+  let paragraphs = [];
+  let typingTimer = null;
+  let ejecutarMarcadoresPendientes = null;
 
-    /* COMPROBAR CRT */
+  /* COMPROBAR CRT */
 
-    function isCRT() {
+  function isCRT() {
 
-        return (
-            typeof tags === "function" &&
-            tags().includes("crt")
-        );
+      return (
+          typeof tags === "function" &&
+          tags().includes("crt")
+      );
 
+  }
+
+  /* REPRODUCIR SONIDO CRT */
+
+  function reproducirSonidoCRT(soundFile) {
+
+      ReproducirSonidoEscritura(
+          soundFile
+      );
+
+  }
+
+  /* AGITASAO */
+
+  function startCRTTurbulence() {
+
+      if (!isCRT()) {
+          return;
+      }
+
+      const passages =
+          document.querySelector("#passages");
+
+      if (!passages) {
+          return;
+      }
+
+      passages.classList.add("crt-turbulence");
+  }
+
+  function stopCRTTurbulence() {
+
+      const passages =
+          document.querySelector("#passages");
+
+      if (!passages) {
+          return;
+      }
+
+      passages.classList.remove("crt-turbulence");
+  }
+
+  /* AGITASAO X2 */
+
+  function triggerCRTShake(strong = false) {
+
+      if (!isCRT()) {
+          return;
+      }
+
+      const passages =
+          document.querySelector("#passages");
+
+      if (!passages) {
+          return;
+      }
+
+      passages.classList.remove(
+          "crt-impact",
+          "crt-impact-strong"
+      );
+
+      /* Forzar reinicio de la animación */
+
+      void passages.offsetWidth;
+
+      if (strong) {
+
+          passages.classList.add(
+              "crt-impact-strong"
+          );
+
+      } else {
+
+          passages.classList.add(
+              "crt-impact"
+          );
+
+      }
+
+      setTimeout(function () {
+
+          passages.classList.remove(
+              "crt-impact",
+              "crt-impact-strong"
+          );
+
+      }, strong ? 700 : 500);
+  }
+
+  /* =====================================================
+     MACROS
+  ===================================================== */
+
+  /* Macro <<shake>> */
+
+  Macro.add("shake", {
+
+      handler: function () {
+
+          const marker =
+              document.createElement("span");
+
+          marker.className =
+              "crt-shake-marker";
+
+          this.output.appendChild(marker);
+
+      }
+
+  });
+  /* Macro big shake */
+  Macro.add("bigshake", {
+
+      handler: function () {
+
+          const marker =
+              document.createElement("span");
+
+          marker.className =
+              "crt-shake-marker-strong";
+
+          this.output.appendChild(
+              marker
+          );
+
+      }
+
+  });
+
+  /* MACRO <<turbulence>> */
+
+  Macro.add("turbulence", {
+
+      handler: function () {
+
+          const marker =
+              document.createElement("span");
+
+          marker.className =
+              "crt-turbulence-marker";
+
+          this.output.appendChild(marker);
+
+      }
+
+  });
+
+  /* MACRO <<stopturbulence>> */
+
+  Macro.add("stopturbulence", {
+
+      handler: function () {
+
+          const marker =
+              document.createElement("span");
+
+          marker.className =
+              "crt-stop-turbulence-marker";
+
+          this.output.appendChild(marker);
+
+      }
+
+  });
+
+/* textspeed */
+  Macro.add("textspeed", {
+
+      handler: function () {
+
+          const requestedSpeed =
+              Number(this.args[0]);
+
+          if (
+              !Number.isFinite(requestedSpeed) ||
+              requestedSpeed < 0 ||
+              requestedSpeed > 1000
+          ) {
+
+              return this.error(
+                  "La velocidad debe ser un número entre 0 y 1000."
+              );
+
+          }
+
+          const marker =
+              document.createElement("span");
+
+          marker.className =
+              "crt-text-speed-marker";
+
+          marker.dataset.speed =
+              String(requestedSpeed);
+
+          this.output.appendChild(marker);
+
+      }
+
+  });
+
+  /* <<playsound "ruta/al/sonido.mp3">> */
+
+  Macro.add("playsound", {
+
+      handler: function () {
+
+          const soundFile =
+              String(this.args[0] || "").trim();
+
+          if (!soundFile) {
+
+              return this.error(
+                  "Debes indicar la ruta de un archivo de audio."
+              );
+
+          }
+
+          const marker =
+              document.createElement("span");
+
+          marker.className =
+              "crt-play-sound-marker";
+
+          marker.dataset.sound =
+              soundFile;
+
+          this.output.appendChild(marker);
+
+      }
+
+  });
+
+  function resetTyping() {
+
+      if (typingTimer) {
+
+          clearTimeout(typingTimer);
+          typingTimer = null;
+
+      }
+
+      typing = false;
+      finished = false;
+      currentParagraph = 0;
+      paragraphs = [];
+      ejecutarMarcadoresPendientes = null;
+
+      const passages =
+          document.querySelector("#passages");
+
+      if (passages) {
+
+          passages.classList.remove(
+              "crt-turbulence",
+              "crt-impact",
+              "crt-impact-strong"
+          );
+
+      }
+
+  }
+
+
+  $(document).off(
+      ":passagedisplay.scienceTyping"
+  );
+
+  $(document).on(
+      ":passagedisplay.scienceTyping",
+      function () {
+
+          resetTyping();
+
+          /* SOLO CRT */
+
+          if (!isCRT()) {
+
+              const oldContinueText =
+                  document.querySelector(
+                      "#science-continue"
+                  );
+
+              if (oldContinueText) {
+                  oldContinueText.remove();
+              }
+
+              return;
+          }
+
+          /* click continue */
+
+          let newContinueText =
+              document.querySelector("#science-continue");
+
+          if (!newContinueText) {
+
+              newContinueText =
+                  document.createElement("div");
+
+              newContinueText.id =
+                  "science-continue";
+
+              newContinueText.className =
+                  "science-continue";
+
+              const passages =
+                  document.querySelector("#passages");
+
+              if (passages) {
+
+                  passages.appendChild(
+                      newContinueText
+                  );
+
+              }
+
+          }
+
+          /* CONTENEDOR */
+
+          const container =
+              document.querySelector(
+                  "#science-dialogue"
+              );
+
+          if (!container) {
+              return;
+          }
+
+          /* PÁRRAFOS */
+
+          paragraphs =
+              Array.from(
+                  container.querySelectorAll("p")
+              );
+
+          if (paragraphs.length === 0) {
+              return;
+          }
+
+          paragraphs.forEach(
+              function (paragraph) {
+
+                  paragraph.dataset.fullHTML =
+                      paragraph.innerHTML;
+
+                  paragraph.innerHTML = "";
+
+                  paragraph.style.display =
+                      "none";
+
+                  paragraph.classList.remove(
+                      "typing"
+                  );
+
+              }
+          );
+
+          const options =
+              document.querySelector(
+                  "#science-options"
+              );
+
+          if (options) {
+
+              options.classList.remove(
+                  "visible"
+              );
+          }
+          startParagraph();
+      }
+  );
+
+  function startParagraph() {
+      if (
+          currentParagraph >=
+          paragraphs.length
+      ) {
+          showOptions();
+          return;
+      }
+      const paragraph =
+          paragraphs[currentParagraph];
+      if (!paragraph) {
+          return;
+      }
+      paragraph.style.display =
+          "block";
+      paragraph.classList.add(
+          "typing"
+      );
+      typing = true;
+      finished = false;
+
+      const continueText =
+          document.querySelector(
+              "#science-continue"
+          );
+
+      if (continueText) {
+
+          continueText.classList.remove(
+              "visible"
+          );
+
+          continueText.textContent =
+              "";
+
+      }
+      const originalHTML =
+          paragraph.dataset.fullHTML || "";
+
+      const temp =
+          document.createElement("div");
+
+      temp.innerHTML =
+          originalHTML;
+
+      paragraph.innerHTML =
+          temp.innerHTML;
+
+      const textNodes = [];
+      let nodeIndex = 0;
+
+      function collectTextNodes(node) {
+
+          node.childNodes.forEach(
+              function (child) {
+
+                  /* AGITASAO */
+
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains("crt-shake-marker")
+                  ) {
+
+                      textNodes.push({
+                          shake: true,
+                          strong: false
+                      });
+
+                      return;
+                  }
+
+                  /* AGITASAO X2 */
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains("crt-shake-marker-strong")
+                  ) {
+
+                      textNodes.push({
+                          shake: true,
+                          strong: true
+                      });
+
+                      return;
+                  }
+
+                  /* TURBULENCIAS */
+
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains("crt-turbulence-marker")
+                  ) {
+
+                      textNodes.push({
+                          turbulence: true,
+                          stopTurbulence: false
+                      });
+
+                      return;
+                  }
+
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains("crt-stop-turbulence-marker")
+                  ) {
+                      textNodes.push({
+                          turbulence: true,
+                          stopTurbulence: true
+                      });
+                      return;
+                  }
+
+                  /* VELOCIDAD */
+
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains("crt-text-speed-marker")
+                  ) {
+                      textNodes.push({
+                          speedChange: true,
+                          speed: Number(child.dataset.speed)
+                      });
+                      return;
+                  }
+
+                  /* SONIDO */
+
+                  if (
+                      child.nodeType === Node.ELEMENT_NODE &&
+                      child.classList.contains("crt-play-sound-marker")
+                  ) {
+
+                      textNodes.push({
+                          playSound: true,
+                          soundFile: child.dataset.sound
+                      });
+                      return;
+                  }
+
+                  if (
+                      child.nodeType ===
+                      Node.TEXT_NODE
+                  ) {
+                      textNodes.push({
+                          node: child,
+                          text: child.textContent,
+                          position: 0,
+                          shake: false
+                      });
+                  }
+
+                  /* ======== ELEMENTOS HTML ============== */
+
+                  else if (
+                      child.nodeType ===
+                      Node.ELEMENT_NODE
+                  ) {
+                      collectTextNodes(child);
+                  }
+              }
+          );
+      }
+
+      collectTextNodes(paragraph);
+
+      ejecutarMarcadoresPendientes = function () {
+
+          for (
+              let index = nodeIndex;
+              index < textNodes.length;
+              index++
+          ) {
+
+              const pending =
+                  textNodes[index];
+
+              if (pending.shake) {
+
+                  triggerCRTShake(
+                      pending.strong
+                  );
+
+              } else if (pending.turbulence) {
+
+                  if (pending.stopTurbulence) {
+                      stopCRTTurbulence();
+                  } else {
+                      startCRTTurbulence();
+                  }
+
+              } else if (pending.playSound) {
+
+                  reproducirSonidoCRT(
+                      pending.soundFile
+                  );
+
+              }
+
+          }
+
+      };
+
+      textNodes.forEach(
+          function (item) {
+              if (item.node) {
+                  item.node.textContent =
+                      "";
+              }
+          }
+      );
+
+      const typingCursor =
+          document.createElement("span");
+
+      typingCursor.className =
+          "science-typing-cursor";
+
+      typingCursor.textContent = "|";
+
+      paragraph.appendChild(typingCursor);
+
+      const defaultSpeed = 30; /* VELOCIDAD EN CRT */
+      let currentSpeed = defaultSpeed;
+
+      function typeCharacter() {
+          if (!typing) {
+              return;
+          }
+          while (
+              nodeIndex <
+              textNodes.length
+          ) {
+              const current =
+                  textNodes[nodeIndex];
+              if (current.shake) {
+                  triggerCRTShake(
+                      current.strong
+                  );
+                  nodeIndex++;
+                  typingTimer = setTimeout(
+                      typeCharacter,
+                      current.strong ? 700 : 500
+                  );
+                  return;
+              }
+              if (current.turbulence) {
+                  if (current.stopTurbulence) {
+                      stopCRTTurbulence();
+                  } else {
+                      startCRTTurbulence();
+                  }
+                  nodeIndex++;
+                  continue;
+              }
+
+              if (current.speedChange) {
+                  currentSpeed = current.speed;
+                  nodeIndex++;
+                  continue;
+              }
+              /* SONIDO */
+              if (current.playSound) {
+
+                  reproducirSonidoCRT(
+                      current.soundFile
+                  );
+
+                  nodeIndex++;
+                  continue;
+              }
+
+              if (
+                  current.position >=
+                  current.text.length
+              ) {
+                  nodeIndex++;
+                  continue;
+              }
+
+              break;
+
+          }
+
+          if (
+              nodeIndex >=
+              textNodes.length
+          ) {
+              typingTimer = null;
+              finishParagraph();
+              return;
+          }
+
+          const current =
+              textNodes[nodeIndex];
+
+          const currentCharacter =
+              current.text.charAt(
+                  current.position
+              );
+
+          current.node.textContent +=
+              currentCharacter;
+
+          if (current.node.parentNode) {
+
+              current.node.parentNode.insertBefore(
+                  typingCursor,
+                  current.node.nextSibling
+              );
+
+          }
+
+          current.position++;
+
+          let delay = currentSpeed;
+
+          delay +=
+              PausaPorSigno(
+                  currentCharacter,
+                  "crt"
+              );
+
+          typingTimer =
+              setTimeout(
+                  typeCharacter,
+                  delay
+              );
+      }
+      typeCharacter();
+  }
+
+  function finishParagraph() {
+      if (typingTimer) {
+          clearTimeout(
+              typingTimer
+          );
+          typingTimer = null;
+      }
+
+
+      if (ejecutarMarcadoresPendientes) {
+
+          const ejecutarPendientes =
+              ejecutarMarcadoresPendientes;
+
+          ejecutarMarcadoresPendientes = null;
+          ejecutarPendientes();
+
+      }
+
+      const paragraph =
+          paragraphs[currentParagraph];
+      if (!paragraph) {
+          return;
+      }
+
+      paragraph.innerHTML =
+          paragraph.dataset.fullHTML || "";
+      paragraph.classList.remove(
+          "typing"
+      );
+
+      paragraph
+          .querySelectorAll(".science-highlight")
+          .forEach(function (highlight) {
+              highlight.classList.add(
+                  "highlight-active"
+              );
+          });
+
+      typing = false;
+      finished = true;
+
+      const continueText =
+          document.querySelector(
+              "#science-continue"
+          );
+
+      if (!continueText) {
+          return;
+      }
+
+      if (
+          currentParagraph <
+          paragraphs.length - 1
+      ) {
+          continueText.textContent =
+              "CLICK TO CONTINUE";
+          continueText.classList.add(
+              "visible"
+          );
+      }
+
+      /* Último párrafo */
+
+      else {
+          const container =
+              document.querySelector(
+                  "#science-dialogue"
+              );
+
+          const nextPassage =
+              container && container.dataset.next
+                  ? container.dataset.next.trim()
+                  : "";
+
+          const hasOptions =
+              Boolean(
+                  document.querySelector(
+                      "#science-options"
+                  )
+              );
+
+          if (nextPassage || hasOptions) {
+              continueText.textContent =
+                  "CLICK TO CONTINUE";
+              continueText.classList.add(
+                  "visible"
+              );
+
+          } else {
+              continueText.classList.remove(
+                  "visible"
+              );
+              continueText.textContent =
+                  "";
+          }
+      }
+  }
+
+  /* CLICK PARA AVANZAR*/
+
+  function avanzarTextoCRT() {
+      const container =
+          document.querySelector(
+              "#science-dialogue"
+          );
+      const nextPassage =
+          container
+              ? (container.dataset.next || "").trim()
+              : null;
+      if (
+          currentParagraph >= paragraphs.length - 1 &&
+          nextPassage
+      ) {
+          finished = false;
+          Engine.play(nextPassage);
+          return;
+      }
+      /* Todavía quedan párrafos */
+
+      currentParagraph++;
+      startParagraph();
+  }
+
+  $(document).off(
+      "click.scienceTyping"
+  );
+  $(document).on(
+      "click.scienceTyping",
+      function (event) {
+          if (!isCRT()) {
+              return;
+          }
+          ClickParaEscribir(
+              event,
+              {
+                  estaEscribiendo: function () {
+                      return typing;
+                  },
+                  revelar: finishParagraph,
+                  estaTerminado: function () {
+                      return finished;
+                  },
+                  avanzar: avanzarTextoCRT
+              }
+          );
+
+      }
+  );
+
+  /* Opciones */
+
+  function showOptions() {
+
+      const continueText =
+          document.querySelector(
+              "#science-continue"
+          );
+      if (continueText) {
+          continueText.classList.remove(
+              "visible"
+          );
+          continueText.textContent =
+              "";
     }
-
-    /* REPRODUCIR SONIDO CRT */
-
-    function reproducirSonidoCRT(soundFile) {
-
-        if (!soundFile) {
-            return;
-        }
-
-        const sound =
-            new Audio(soundFile);
-
-        sound.volume = 0.8;
-
-        sound.play().catch(function () {
-
-            console.log(
-                "No se pudo reproducir el sonido: " +
-                soundFile
-            );
-
-        });
-
-    }
-
-    /* AGITASAO */
-
-    function startCRTTurbulence() {
-
-        if (!isCRT()) {
-            return;
-        }
-
-        const passages =
-            document.querySelector("#passages");
-
-        if (!passages) {
-            return;
-        }
-
-        passages.classList.add("crt-turbulence");
-    }
-
-    function stopCRTTurbulence() {
-
-        const passages =
-            document.querySelector("#passages");
-
-        if (!passages) {
-            return;
-        }
-
-        passages.classList.remove("crt-turbulence");
-    }
-
-    /* AGITASAO X2 */
-
-    function triggerCRTShake(strong = false) {
-
-        if (!isCRT()) {
-            return;
-        }
-
-        const passages =
-            document.querySelector("#passages");
-
-        if (!passages) {
-            return;
-        }
-
-        passages.classList.remove(
-            "crt-impact",
-            "crt-impact-strong"
-        );
-
-        /* Forzar reinicio de la animación */
-
-        void passages.offsetWidth;
-
-        if (strong) {
-
-            passages.classList.add(
-                "crt-impact-strong"
-            );
-
-        } else {
-
-            passages.classList.add(
-                "crt-impact"
-            );
-
-        }
-
-        setTimeout(function () {
-
-            passages.classList.remove(
-                "crt-impact",
-                "crt-impact-strong"
-            );
-
-        }, strong ? 700 : 500);
-    }
-
-    /* =====================================================
-       MACROS
-    ===================================================== */
-
-    /* Macro <<shake>> */
-
-    Macro.add("shake", {
-
-        handler: function () {
-
-            const marker =
-                document.createElement("span");
-
-            marker.className =
-                "crt-shake-marker";
-
-            this.output.appendChild(marker);
-
-        }
-
-    });
-    /* Macro big shake */
-    Macro.add("bigshake", {
-
-        handler: function () {
-
-            const marker =
-                document.createElement("span");
-
-            marker.className =
-                "crt-shake-marker-strong";
-
-            this.output.appendChild(
-                marker
-            );
-
-        }
-
-    });
-
-    /* MACRO <<turbulence>> */
-
-    Macro.add("turbulence", {
-
-        handler: function () {
-
-            const marker =
-                document.createElement("span");
-
-            marker.className =
-                "crt-turbulence-marker";
-
-            this.output.appendChild(marker);
-
-        }
-
-    });
-
-    /* MACRO <<stopturbulence>> */
-
-    Macro.add("stopturbulence", {
-
-        handler: function () {
-
-            const marker =
-                document.createElement("span");
-
-            marker.className =
-                "crt-stop-turbulence-marker";
-
-            this.output.appendChild(marker);
-
-        }
-
-    });
-
- /* textspeed */
-    Macro.add("textspeed", {
-
-        handler: function () {
-
-            const requestedSpeed =
-                Number(this.args[0]);
-
-            if (
-                !Number.isFinite(requestedSpeed) ||
-                requestedSpeed < 0 ||
-                requestedSpeed > 1000
-            ) {
-
-                return this.error(
-                    "La velocidad debe ser un número entre 0 y 1000."
-                );
-
-            }
-
-            const marker =
-                document.createElement("span");
-
-            marker.className =
-                "crt-text-speed-marker";
-
-            marker.dataset.speed =
-                String(requestedSpeed);
-
-            this.output.appendChild(marker);
-
-        }
-
-    });
-
-    /* <<playsound "ruta/al/sonido.mp3">> */
-
-    Macro.add("playsound", {
-
-        handler: function () {
-
-            const soundFile =
-                String(this.args[0] || "").trim();
-
-            if (!soundFile) {
-
-                return this.error(
-                    "Debes indicar la ruta de un archivo de audio."
-                );
-
-            }
-
-            const marker =
-                document.createElement("span");
-
-            marker.className =
-                "crt-play-sound-marker";
-
-            marker.dataset.sound =
-                soundFile;
-
-            this.output.appendChild(marker);
-
-        }
-
-    });
-
-    function resetTyping() {
-
-        if (typingTimer) {
-
-            clearTimeout(typingTimer);
-            typingTimer = null;
-
-        }
-
-        typing = false;
-        finished = false;
-        currentParagraph = 0;
-        paragraphs = [];
-        ejecutarMarcadoresPendientes = null;
-
-        const passages =
-            document.querySelector("#passages");
-
-        if (passages) {
-
-            passages.classList.remove(
-                "crt-turbulence",
-                "crt-impact",
-                "crt-impact-strong"
-            );
-
-        }
-
-    }
-
-
-    $(document).off(
-        ":passagedisplay.scienceTyping"
-    );
-
-    $(document).on(
-        ":passagedisplay.scienceTyping",
-        function () {
-
-            resetTyping();
-
-            /* SOLO CRT */
-
-            if (!isCRT()) {
-
-                const oldContinueText =
-                    document.querySelector(
-                        "#science-continue"
-                    );
-
-                if (oldContinueText) {
-                    oldContinueText.remove();
-                }
-
-                return;
-            }
-
-            /* click continue */
-
-            let newContinueText =
-                document.querySelector("#science-continue");
-
-            if (!newContinueText) {
-
-                newContinueText =
-                    document.createElement("div");
-
-                newContinueText.id =
-                    "science-continue";
-
-                newContinueText.className =
-                    "science-continue";
-
-                const passages =
-                    document.querySelector("#passages");
-
-                if (passages) {
-
-                    passages.appendChild(
-                        newContinueText
-                    );
-
-                }
-
-            }
-
-            /* CONTENEDOR */
-
-            const container =
-                document.querySelector(
-                    "#science-dialogue"
-                );
-
-            if (!container) {
-                return;
-            }
-
-            /* PÁRRAFOS */
-
-            paragraphs =
-                Array.from(
-                    container.querySelectorAll("p")
-                );
-
-            if (paragraphs.length === 0) {
-                return;
-            }
-
-            paragraphs.forEach(
-                function (paragraph) {
-
-                    paragraph.dataset.fullHTML =
-                        paragraph.innerHTML;
-
-                    paragraph.innerHTML = "";
-
-                    paragraph.style.display =
-                        "none";
-
-                    paragraph.classList.remove(
-                        "typing"
-                    );
-
-                }
-            );
-
-            const options =
-                document.querySelector(
-                    "#science-options"
-                );
-
-            if (options) {
-
-                options.classList.remove(
-                    "visible"
-                );
-            }
-            startParagraph();
-        }
-    );
-
-    function startParagraph() {
-        if (
-            currentParagraph >=
-            paragraphs.length
-        ) {
-            showOptions();
-            return;
-        }
-        const paragraph =
-            paragraphs[currentParagraph];
-        if (!paragraph) {
-            return;
-        }
-        paragraph.style.display =
-            "block";
-        paragraph.classList.add(
-            "typing"
-        );
-        typing = true;
-        finished = false;
-
-        const continueText =
-            document.querySelector(
-                "#science-continue"
-            );
-
-        if (continueText) {
-
-            continueText.classList.remove(
-                "visible"
-            );
-
-            continueText.textContent =
-                "";
-
-        }
-        const originalHTML =
-            paragraph.dataset.fullHTML || "";
-
-        const temp =
-            document.createElement("div");
-
-        temp.innerHTML =
-            originalHTML;
-
-        paragraph.innerHTML =
-            temp.innerHTML;
-
-        const textNodes = [];
-        let nodeIndex = 0;
-
-        function collectTextNodes(node) {
-
-            node.childNodes.forEach(
-                function (child) {
-
-                    /* AGITASAO */
-
-                    if (
-                        child.nodeType === Node.ELEMENT_NODE &&
-                        child.classList.contains("crt-shake-marker")
-                    ) {
-
-                        textNodes.push({
-                            shake: true,
-                            strong: false
-                        });
-
-                        return;
-                    }
-
-                    /* AGITASAO X2 */
-                    if (
-                        child.nodeType === Node.ELEMENT_NODE &&
-                        child.classList.contains("crt-shake-marker-strong")
-                    ) {
-
-                        textNodes.push({
-                            shake: true,
-                            strong: true
-                        });
-
-                        return;
-                    }
-
-                    /* TURBULENCIAS */
-
-                    if (
-                        child.nodeType === Node.ELEMENT_NODE &&
-                        child.classList.contains("crt-turbulence-marker")
-                    ) {
-
-                        textNodes.push({
-                            turbulence: true,
-                            stopTurbulence: false
-                        });
-
-                        return;
-                    }
-
-                    if (
-                        child.nodeType === Node.ELEMENT_NODE &&
-                        child.classList.contains("crt-stop-turbulence-marker")
-                    ) {
-                        textNodes.push({
-                            turbulence: true,
-                            stopTurbulence: true
-                        });
-                        return;
-                    }
-
-                    /* VELOCIDAD */
-
-                    if (
-                        child.nodeType === Node.ELEMENT_NODE &&
-                        child.classList.contains("crt-text-speed-marker")
-                    ) {
-                        textNodes.push({
-                            speedChange: true,
-                            speed: Number(child.dataset.speed)
-                        });
-                        return;
-                    }
-
-                    /* SONIDO */
-
-                    if (
-                        child.nodeType === Node.ELEMENT_NODE &&
-                        child.classList.contains("crt-play-sound-marker")
-                    ) {
-
-                        textNodes.push({
-                            playSound: true,
-                            soundFile: child.dataset.sound
-                        });
-                        return;
-                    }
-
-                    if (
-                        child.nodeType ===
-                        Node.TEXT_NODE
-                    ) {
-                        textNodes.push({
-                            node: child,
-                            text: child.textContent,
-                            position: 0,
-                            shake: false
-                        });
-                    }
-
-                    /* ======== ELEMENTOS HTML ============== */
-
-                    else if (
-                        child.nodeType ===
-                        Node.ELEMENT_NODE
-                    ) {
-                        collectTextNodes(child);
-                    }
-                }
-            );
-        }
-
-        collectTextNodes(paragraph);
-
-        ejecutarMarcadoresPendientes = function () {
-
-            for (
-                let index = nodeIndex;
-                index < textNodes.length;
-                index++
-            ) {
-
-                const pending =
-                    textNodes[index];
-
-                if (pending.shake) {
-
-                    triggerCRTShake(
-                        pending.strong
-                    );
-
-                } else if (pending.turbulence) {
-
-                    if (pending.stopTurbulence) {
-                        stopCRTTurbulence();
-                    } else {
-                        startCRTTurbulence();
-                    }
-
-                } else if (pending.playSound) {
-
-                    reproducirSonidoCRT(
-                        pending.soundFile
-                    );
-
-                }
-
-            }
-
-        };
-
-        textNodes.forEach(
-            function (item) {
-                if (item.node) {
-                    item.node.textContent =
-                        "";
-                }
-            }
-        );
-
-        const typingCursor =
-            document.createElement("span");
-
-        typingCursor.className =
-            "science-typing-cursor";
-
-        typingCursor.textContent = "|";
-
-        paragraph.appendChild(typingCursor);
-
-        const defaultSpeed = 30; /* VELOCIDAD EN CRT */
-        let currentSpeed = defaultSpeed;
-
-        function typeCharacter() {
-            if (!typing) {
-                return;
-            }
-            while (
-                nodeIndex <
-                textNodes.length
-            ) {
-                const current =
-                    textNodes[nodeIndex];
-                if (current.shake) {
-                    triggerCRTShake(
-                        current.strong
-                    );
-                    nodeIndex++;
-                    typingTimer = setTimeout(
-                        typeCharacter,
-                        current.strong ? 700 : 500
-                    );
-                    return;
-                }
-                if (current.turbulence) {
-                    if (current.stopTurbulence) {
-                        stopCRTTurbulence();
-                    } else {
-                        startCRTTurbulence();
-                    }
-                    nodeIndex++;
-                    continue;
-                }
-
-                if (current.speedChange) {
-                    currentSpeed = current.speed;
-                    nodeIndex++;
-                    continue;
-                }
-                /* SONIDO */
-                if (current.playSound) {
-
-                    reproducirSonidoCRT(
-                        current.soundFile
-                    );
-
-                    nodeIndex++;
-                    continue;
-                }
-
-                if (
-                    current.position >=
-                    current.text.length
-                ) {
-                    nodeIndex++;
-                    continue;
-                }
-
-                break;
-
-            }
-
-            if (
-                nodeIndex >=
-                textNodes.length
-            ) {
-                typingTimer = null;
-                finishParagraph();
-                return;
-            }
-
-            const current =
-                textNodes[nodeIndex];
-
-            const currentCharacter =
-                current.text.charAt(
-                    current.position
-                );
-
-            current.node.textContent +=
-                currentCharacter;
-
-            if (current.node.parentNode) {
-
-                current.node.parentNode.insertBefore(
-                    typingCursor,
-                    current.node.nextSibling
-                );
-
-            }
-
-            current.position++;
-
-            let delay = currentSpeed;
-
-            delay +=
-                PausaPorSigno(
-                    currentCharacter,
-                    "crt"
-                );
-
-            typingTimer =
-                setTimeout(
-                    typeCharacter,
-                    delay
-                );
-        }
-        typeCharacter();
-    }
-
-    function finishParagraph() {
-        if (typingTimer) {
-            clearTimeout(
-                typingTimer
-            );
-            typingTimer = null;
-        }
-
-
-        if (ejecutarMarcadoresPendientes) {
-
-            const ejecutarPendientes =
-                ejecutarMarcadoresPendientes;
-
-            ejecutarMarcadoresPendientes = null;
-            ejecutarPendientes();
-
-        }
-
-        const paragraph =
-            paragraphs[currentParagraph];
-        if (!paragraph) {
-            return;
-        }
-
-        paragraph.innerHTML =
-            paragraph.dataset.fullHTML || "";
-        paragraph.classList.remove(
-            "typing"
-        );
-
-        paragraph
-            .querySelectorAll(".science-highlight")
-            .forEach(function (highlight) {
-                highlight.classList.add(
-                    "highlight-active"
-                );
-            });
-
-        typing = false;
-        finished = true;
-
-        const continueText =
-            document.querySelector(
-                "#science-continue"
-            );
-
-        if (!continueText) {
-            return;
-        }
-
-        if (
-            currentParagraph <
-            paragraphs.length - 1
-        ) {
-            continueText.textContent =
-                "CLICK TO CONTINUE";
-            continueText.classList.add(
-                "visible"
-            );
-        }
-
-        /* Último párrafo */
-
-        else {
-            const container =
-                document.querySelector(
-                    "#science-dialogue"
-                );
-
-            const nextPassage =
-                container && container.dataset.next
-                    ? container.dataset.next.trim()
-                    : "";
-
-            const hasOptions =
-                Boolean(
-                    document.querySelector(
-                        "#science-options"
-                    )
-                );
-
-            if (nextPassage || hasOptions) {
-                continueText.textContent =
-                    "CLICK TO CONTINUE";
-                continueText.classList.add(
-                    "visible"
-                );
-
-            } else {
-                continueText.classList.remove(
-                    "visible"
-                );
-                continueText.textContent =
-                    "";
-            }
-        }
-    }
-
-    /* CLICK PARA AVANZAR*/
-
-    function avanzarTextoCRT() {
-        const container =
-            document.querySelector(
-                "#science-dialogue"
-            );
-        const nextPassage =
-            container
-                ? (container.dataset.next || "").trim()
-                : null;
-        if (
-            currentParagraph >= paragraphs.length - 1 &&
-            nextPassage
-        ) {
-            finished = false;
-            Engine.play(nextPassage);
-            return;
-        }
-        /* Todavía quedan párrafos */
-
-        currentParagraph++;
-        startParagraph();
-    }
-
-    $(document).off(
-        "click.scienceTyping"
-    );
-    $(document).on(
-        "click.scienceTyping",
-        function (event) {
-            if (!isCRT()) {
-                return;
-            }
-            ClickParaEscribir(
-                event,
-                {
-                    estaEscribiendo: function () {
-                        return typing;
-                    },
-                    revelar: finishParagraph,
-                    estaTerminado: function () {
-                        return finished;
-                    },
-                    avanzar: avanzarTextoCRT
-                }
-            );
-
-        }
-    );
-
-    /* Opciones */
-
-    function showOptions() {
-
-        const continueText =
-            document.querySelector(
-                "#science-continue"
-            );
-        if (continueText) {
-            continueText.classList.remove(
-                "visible"
-            );
-            continueText.textContent =
-                "";
-        }
-        const options =
-            document.querySelector(
-                "#science-options"
-            );
-        if (!options) {
-            return;
-        }
-        options.classList.add(
-            "visible"
-        );
-    }
+      const options =
+          document.querySelector(
+              "#science-options"
+          );
+      if (!options) {
+          return;
+      }
+      options.classList.add(
+          "visible"
+      );
+  }
 })();
 </script><tw-tag name="crt" color="purple"></tw-tag><tw-tag name="magico" color="blue"></tw-tag><tw-tag name="invitacion" color="red"></tw-tag><tw-tag name="scrt" color="green"></tw-tag><tw-tag name="final" color="green"></tw-tag><tw-passagedata pid="1" name="Untitled Passage" tags="invitacion" position="1750,0" size="100,100">&lt;h1&gt;An Invitation&lt;/h1&gt;
 &lt;div class=&quot;story-divider&quot;&gt;&lt;/div&gt;
@@ -6245,7 +6470,7 @@ Macro.add("magicpage", {
     &lt;div class=&quot;option-science&quot;&gt;[[Stare into the void|Void]]&lt;/div&gt;
     &lt;div class=&quot;option-science&quot;&gt;[[Investigate the strange panel|Panel]]&lt;/div&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="3" name="Magic" tags="magico" position="2650,325" size="100,100">&lt;h1&gt;The warm lights&lt;/h1&gt;
+</tw-passagedata><tw-passagedata pid="3" name="Magic" tags="magico" position="2975,275" size="100,100">&lt;h1&gt;The warm lights&lt;/h1&gt;
 &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/iesmfOZ.png&quot; &quot;imagen1&quot; 40 11&gt;&gt;
 &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou can feel a warmth coming from the yellow light as you grow closer, the way that it flickers feels somehow mesmerizing as if it were trying to tell you something as it starts moving forward&lt;/p&gt;
 &lt;p&gt;You decide to follow it, and before you know it, you now find yourself walking through a long hallway of what appears to be an abandoned facility as your surroundings have changed in the blink of an eye.&lt;/p&gt;
@@ -6383,7 +6608,7 @@ Somewhere, way beyond what you can see outside, there must be something familiar
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/crash.mp3&quot;&gt;&gt;&lt;span style=&quot;font-size: 4em;&quot;&gt;&lt;span class=&quot;crash-text crash-large&quot;&gt;CRASH&lt;/span&gt;&lt;/span&gt;&lt;&lt;bigshake&gt;&gt;&lt;&lt;stopturbulence&gt;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="12" name="WELCOME" tags="final" position="1950,2825" size="100,100">Pantalla final de ganaste
+</tw-passagedata><tw-passagedata pid="12" name="WELCOME" tags="final" position="2400,2975" size="100,100">Pantalla final de ganaste
 </tw-passagedata><tw-passagedata pid="13" name="Planet" tags="crt" position="450,1750" size="100,100">&lt;h1&gt;A planet&lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You start to wonder how far away home is, or if you&#39;ll make it back there from the void in front of you...&lt;/p&gt;
@@ -6684,7 +6909,7 @@ You know you&#39;ll be okay, you have to.&lt;/p&gt;
 	&lt;div class=&quot;option-magic&quot;&gt;
 		[[Check the alchemy equipment]]
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="Touch the light" tags="magico" position="2850,525" size="100,100">&lt;h1&gt;TOUCH THE LIGHT&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://imgur.com/a/LCUD6BY#bcPetpD&quot; &quot;light&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou can feel the mesmerizing pull of the light grow stronger once that you catch up to it, the light dissipates as you try to touch it leaving you in the darkness, you can´t shake the feeling of being observed as your mind is flooded by multiple voices whispering in a strange language that you do not recognize.&lt;/p&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="Touch the light" tags="magico" position="3425,500" size="100,100">&lt;h1&gt;TOUCH THE LIGHT&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://imgur.com/a/LCUD6BY#bcPetpD&quot; &quot;light&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou can feel the mesmerizing pull of the light grow stronger once that you catch up to it, the light dissipates as you try to touch it leaving you in the darkness, you can´t shake the feeling of being observed as your mind is flooded by multiple voices whispering in a strange language that you do not recognize.&lt;/p&gt;
  &lt;p&gt;The voices start getting louder and louder as time passes.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="Check the alchemy equipment" tags="magico" position="2700,800" size="100,100">
 
 
@@ -6795,7 +7020,84 @@ You know you&#39;ll be okay, you have to.&lt;/p&gt;
 	&lt;div class=&quot;option-magic&quot;&gt;
 		[[Put it back]]
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Examine the bottles" tags="" position="2600,1075" size="100,100"></tw-passagedata><tw-passagedata pid="43" name="Check the notes" tags="" position="2800,1100" size="100,100"></tw-passagedata><tw-passagedata pid="44" name="Try to understand the symbols" tags="" position="2100,1275" size="100,100"></tw-passagedata><tw-passagedata pid="45" name="Explore somewhere else" tags="magico" position="2400,1375" size="100,100">&lt;h1&gt;Explore Somewhere else:&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/VqVQ0Vk.png&quot; &quot;books&quot; 0 70&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou leave the bookshelf alone, and take a quick look around the rest of the strange room.&lt;/p&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Examine the bottles" tags="magico" position="2600,1175" size="100,100">&lt;h1&gt;Examine the bottles:&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/qsQlazb.png&quot; &quot;bottles&quot; 40 50&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou pick up one of the containers, carefully turning it around and tilting it to the sides to get a better look.
+The liquid inside is a weird and almost metallic blue, you don&#39;t know if it&#39;s glowing slightly or reflecting the light from somewhere else.&lt;/p&gt;
+&lt;p&gt;You tilt the container more, but the liquid doesn&#39;t move with it, instead, it moves to the other side, following your hand.&lt;/p&gt;
+&lt;p&gt;You stop and tilt it the other way, it continues to follow, defying the laws of gravity.&lt;/p&gt;
+&lt;p&gt;Is it reacting to you?  &lt;/p&gt;
+&lt;p&gt;You can see a small cork sealing the top of the bottle&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -50px;
+		--left-text-y: 0px;
+		--right-text-x: 100px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Open it]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Leave it -&gt;Bottle shatters]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="43" name="Check the notes" tags="magico" position="2825,1175" size="100,100">&lt;h1&gt;Check the notes:&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/IFsJ45u.png&quot; &quot;notes&quot; 0 30&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou pick up the handwritten notes from the desk, they&#39;re old a bit faded, with several words crossed out and rewritten... Most of the writing is on a language you don&#39;t understand much, but you can identify some diagrams, measurements and weird magical symbols.&lt;/p&gt;
+&lt;p&gt;You pass through several pages, trying to figure out what was being worked on here, it looks like someone was attempting to create something?&lt;/p&gt;
+&lt;p&gt;Most of it makes very little sense to you, yet some of the drawings have little bottles like the ones on the desk with writing and symbols around them, one of them is even colored a bit, how... dedicated.&lt;/p&gt;
+&lt;p&gt;You look around the desk once more and notice the same bottle, just laying there. The liquid inside is a weird and almost metallic blue, you don&#39;t know if it&#39;s glowing slightly or reflecting the light from somewhere else, but before you could reach out and hold it, you hear a small crack. &lt;/p&gt;
+&lt;p&gt;You freeze.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Wait...-&gt;Bottle shatters]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Wait...-&gt;Bottle shatters]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="Try to understand the symbols" tags="magico" position="2100,1275" size="100,100">&lt;h1&gt;Try to understand the symbols:&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/ODUKtU1.png&quot; &quot;symbols&quot; 50 20&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou get the book an inch closer to your face, trying to read carefully and find some sort of pattern in the strange writing.&lt;/p&gt;
+&lt;p&gt;Some of the symbols repeat, there is a strange structure to them, maybe you can recognize the meaning if you look closely enough.&lt;/p&gt;
+&lt;p&gt;You trace them with your eyes, you start to relate sounds to some of them, you don&#39;t know where these came from, but somehow it makes sense.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -90px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Keep trying]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Give up]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="45" name="Explore somewhere else" tags="magico" position="2400,1375" size="100,100">&lt;h1&gt;Explore Somewhere else:&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/VqVQ0Vk.png&quot; &quot;books&quot; 0 70&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou leave the bookshelf alone, and take a quick look around the rest of the strange room.&lt;/p&gt;
 &lt;p&gt;You take a few steps away from the shelves, your eyes still adjusting to the dim light as you walk around.&lt;/p&gt;
 &lt;p&gt;The room feels strangely quiet. Disturbingly quiet.  &lt;/p&gt;
 &lt;p&gt;You notice that the torches around the room have began to flicker, their small flames moving despite the fact that there is no wind in here.&lt;/p&gt;
@@ -6823,7 +7125,7 @@ You know you&#39;ll be okay, you have to.&lt;/p&gt;
 	&lt;div class=&quot;option-magic&quot;&gt;
 		[[Follow the path]]
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="Follow the path" tags="magico" position="2400,1675" size="100,100">
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="46" name="Follow the path" tags="magico" position="2525,1775" size="100,100">
 
 &lt;h1&gt;Follow the path:&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/RHLq6cT.png&quot; &quot;books&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;You trace the path with your fingers, following their shape across the stone floor.
 The pattern seems to extend farther than you initially thought...  &lt;/p&gt;
@@ -6832,9 +7134,9 @@ The pattern seems to extend farther than you initially thought...  &lt;/p&gt;
 &lt;div
 	class=&quot;choice-container&quot;
 	style=&quot;
-		--left-text-x: -70px;
+		--left-text-x: -80px;
 		--left-text-y: 0px;
-		--right-text-x: 90px;
+		--right-text-x: 100px;
 		--right-text-y: 0px;
 
 		--left-arrow-x: 0px;
@@ -6844,13 +7146,13 @@ The pattern seems to extend farther than you initially thought...  &lt;/p&gt;
 	&quot;
 &gt;
 	&lt;div class=&quot;option-magic&quot;&gt;
-		[[Something glows]]
+		[[Something glows-&gt;Curiosity]]
 	&lt;/div&gt;
 
 	&lt;div class=&quot;option-magic&quot;&gt;
-		[[Something glows]]
+		[[Something glows-&gt;Curiosity]]
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="Something glows" tags="magico" position="2400,2500" size="100,100">&lt;h1&gt;Something glows...&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Faxbx37.png&quot; &quot;viejo diablo&quot; 0 30&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;A&lt;/span&gt; reddish light begins to emanate from below you; when you look down at the floor, you notice the carvings were in fact a seal, covering the entire room. The energy emanating from it completely paralyzes your body as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="Curiosity" tags="magico" position="2900,2500" size="100,100">&lt;h1&gt;Something glows...&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Faxbx37.png&quot; &quot;viejo diablo&quot; 0 30&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;A&lt;/span&gt; reddish light begins to emanate from below you; when you look down at the floor, you notice the carvings were in fact a seal, covering the entire room. The energy emanating from it completely paralyzes your body as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
 &lt;p&gt;Before you lose consciousness, you manage to see a figure with bright amber eyes in front of you, it stares at you and tilt it&#39;s head before saying &lt;/p&gt;
 &lt;&lt;diablo-texto-parrafos 0 0 1.7&gt;&gt;&quot;You know, mortals always tend to say that ¨curiosity killed the cat¨, but at least cats have the skills to survive their curiosity.&quot;&lt;&lt;/diablo-texto-parrafos&gt;&gt;
 &lt;p&gt;The figure flicks it&#39;s fingers and you feel something pulling you down as your body disappears. &lt;/p&gt;
@@ -6859,6 +7161,245 @@ The pattern seems to extend farther than you initially thought...  &lt;/p&gt;
 &lt;p&gt;You look up at a sky you don&#39;t recognize, and a world beneath you that seems unfamiliar to you, but it&#39;s growing closer as you&#39;re about to hit the ground.&lt;/p&gt;
 &lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
 &lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
+&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="Give up" tags="magico" position="2200,1800" size="100,100">&lt;h1&gt;Give up:&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/ODUKtU1.png&quot; &quot;symbols&quot; 0 0&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;You decide to close the book, whatever language this is it barely makes any sense to you, and you won&#39;t get any closer to getting out of here by sitting for hours to read.&lt;/p&gt;
+&lt;p&gt;You feel as if you weren&#39;t meant to understand it anyway...&lt;/p&gt;
+&lt;p&gt;You place it back into the bookshelf where you found it and step away from it, giving a quick glance around the room.
+Everything stays quiet for a moment, disturbingly quiet.&lt;/p&gt;
+&lt;p&gt;You wonder to yourself if maybe something was supposed to happen when you placed back the book but before you can question it, you notice as the torches begin to flicker, one after another.&lt;/p&gt;
+&lt;p&gt;You tilt your head and frown, there isn&#39;t any wind...&lt;/p&gt;
+&lt;p&gt;The strange silence that had settled over the room seems to grow even heavier, as if the entire room was holding it&#39;s breath, drowning you inside.&lt;/p&gt;
+&lt;p&gt;You try to get out, running far away from the bookshelf, but once you barely reached the middle of the room, something at your feet gives off a faint red glow.&lt;/p&gt;
+&lt;p&gt;You gulp, frozen in place, before looking down.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -80px;
+		--left-text-y: 0px;
+		--right-text-x: 100px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;The circle]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;The circle]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="49" name="Keep trying" tags="magico" position="1900,1800" size="100,100">&lt;h1&gt;Keep trying:&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/geIWGHR.png&quot; &quot;symbols&quot; 50 10&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou continue studying the page, the longer you look at it, the more familiar these symbols begin to feel.&lt;/p&gt;
+&lt;p&gt;Although you cannot still read them, somehow, it doesn&#39;t take you by surprise when you turn on the next page and see the same symbol again, as if patiently waiting for you.&lt;/p&gt;
+&lt;p&gt;Out of curiosity, you look back at the previous page, but notice the symbol is not there anymore and you can hear the same little giggle again, you&#39;re almost certain it wasn&#39;t your imagination this time.&lt;/p&gt;
+&lt;p&gt;You look around you and at the floor you notice something particular, but before you can check it out the book begins to react, the pages suddenly begin turning on their own, faster and faster while you try to stop them but the book just snaps shut in your hands.&lt;/p&gt;
+&lt;p&gt;You stare at it for a few moments and the room falls completely silent.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -70px;
+		--left-text-y: 0px;
+		--right-text-x: 100px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;Bookworm]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Somethin glows-&gt;Bookworm]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="50" name="Bookworm" tags="magico" position="2100,2500" size="100,100">&lt;h1&gt;Something glows...&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Faxbx37.png &quot;symbols&quot; 0 18&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;A&lt;/span&gt;reddish light begins to emanate from below, you jump slightly and the book drops to your feet. When you look down you start to notice the same symbols from the pages surrounding you as carvings on the floor that begins to glow. The energy emanating from it completely paralyzes your body as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
+&lt;p&gt;Before you lose consciousness, you manage to see a figure with bright amber eyes in front of you, it stares at you and tilt it&#39;s head before saying:&lt;/p&gt; 
+&lt;&lt;diablo-texto-parrafos 0 0 1.7&gt;&gt;&quot;This is your story; you can die and be free of pain, or live and fight your sorrows – either way, the choice is yours to take.&quot;&lt;&lt;/diablo-texto-parrafos&gt;&gt;
+&lt;p&gt;The figure flicks it&#39;s fingers and you feel something pulling you down as your body disappears. &lt;/p&gt;
+&lt;p&gt;You take a big breath and blink, but once you open your eyes you&#39;re not on the same dark room anymore... &lt;/p&gt;
+&lt;p&gt;You&#39;re falling, but from where?&lt;/p&gt;
+&lt;p&gt;You look up at a sky you don&#39;t recognize, and a aworld beneath you that seems unfamiliar to you, but it&#39;s growing closer as you&#39;re about to hit the ground.&lt;/p&gt;
+&lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
+&lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
+&lt;p&gt;It feels familiar, and you feel the need to take a look, but you cannot keep your eyes open as you fall into a deep slumber.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="51" name="The circle" tags="magico" position="2500,2400" size="100,100">&lt;h1&gt;Something glows...&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/Faxbx37.png&quot; &quot;symbols&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;A&lt;/span&gt; reddish light begins to emanate from below you; when you look down at the floor, you notice a huge seal covering the entire room—one you hadn’t noticed until it suddenly activated, but the patterns seem familiar. The energy emanating from it completely paralyzes you as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
+&lt;p&gt;Before you lose consciousness, you manage to see a figure with bright amber eyes in front of you, it stares at you and tilt it&#39;s head before saying: &lt;/p&gt;
+&lt;&lt;diablo-texto-parrafos 0 0 1.7&gt;&gt;&quot;I guess it wouldn´t hurt having some disposable assets around&quot;&lt;&lt;/diablo-texto-parrafos&gt;&gt;
+&lt;p&gt;The figure flicks it&#39;s fingers and you feel something pulling you down as your body disappears. &lt;/p&gt;
+&lt;p&gt;You take a big breath and blink, but once you open your eyes you&#39;re not on the same dark room anymore... &lt;/p&gt;
+&lt;p&gt;You&#39;re falling, but from where?&lt;/p&gt;
+&lt;p&gt;You look up at a sky you don&#39;t recognize, and a world beneath you that seems unfamiliar to you, but it&#39;s growing closer as you&#39;re about to hit the ground.&lt;/p&gt;
+&lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
+&lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
+&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="52" name="Bottle shatters" tags="magico" position="2825,1450" size="100,100">
+
+
+
+
+
+
+
+&lt;h1&gt;Wait...&lt;/h1&gt;
+&lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/RHLq6cT.png&quot; &quot;bottles&quot; 0 -170&gt;&gt;
+&lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;T&lt;/span&gt;he glass bottle suddenly shatters &lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/Glass-shatters.mp3&quot;&gt;&gt;against the desk and the blue liquid spills all across the wooden surface.&lt;/p&gt;
+&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Flinch]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Flinch]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="53" name="Open it" tags="magico" position="2625,1425" size="100,100">&lt;h1&gt;Open it:&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/qsQlazb.png&quot; &quot;bottles&quot; 40 50&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou hesitate for an instant but gather enough courage to finally pull out the cork.&lt;/p&gt;
+&lt;p&gt;The liquid remains still for a moment and you lean closer, trying to see what it does now.&lt;/p&gt;
+&lt;p&gt;A tiny drop slowly begins to rise from the surface... It floats in the air, you flinch in surprise and instinctively pull your hand back, as you see the rest of the liquid begins to move. It climbs up the inside of the bottle, spilling over the edge as if gravity didn&#39;t have any effect on it.&lt;/p&gt;
+&lt;p&gt;You barely have any time to react before the entire fluid escapes, somehow it looks way bigger than it did when inside the bottle.
+It jumps away from you and hits the desk, spreading across the whole surface and staying very still for a second before moving again.
+Even though it doesn&#39;t have a face nor eyes, you feel like it is looking at you.&lt;/p&gt;
+&lt;p&gt;It stares for a few moments, and then it jumps back at you.&lt;/p&gt;
+&lt;&lt;diablo 0 -280 1.8&gt;&gt;Not the brightest tool in the shed now, are we?&lt;&lt;/diablo&gt;&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Flinch]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Flinch]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="54" name="Flinch" tags="magico" position="2825,1775" size="100,100">&lt;h1&gt;Flinch&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/RHLq6cT.png&quot; &quot;liquid&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;T&lt;/span&gt;he liquid creature jumps and you instinctively move to the side, it lands on the floor with a soft, wet sound.&lt;/p&gt;
+&lt;p&gt;You try to take a step back but it follows.&lt;/p&gt;
+&lt;p&gt;The strange substance stretches across the floor, rushing towards you before wrapping around your ankle.
+When you try to pull it away it only tightens its grip, it&#39;s trying to pull and drag you somewhere.&lt;/p&gt;
+&lt;p&gt;You grab onto the very edge of the desk, desperately trying to keep yourself in place but it doesn&#39;t work, the liquid creatures pulls harder, dragging you across the floor towards the center of the room, then your fingers slip from the desk, letting it go.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -80px;
+		--left-text-y: 0px;
+		--right-text-x: 100px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;Fluid monster]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;Fluid monster]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="55" name="Fluid monster" tags="magico" position="3250,2500" size="100,100">&lt;h1&gt;Something glows...&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Faxbx37.png&quot; &quot;viejo diablo&quot; 0 30&gt;&gt;&lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;T&lt;/span&gt;he torches around you begin flickering violently as you are dragged directly onto some strange markings carved into the stone floor, and the moment you reach the center the creature suddenly goes still, going back to its original normal liquid nature.&lt;/p&gt;
+&lt;p&gt;A reddish light begins to emanate from below you; when you look down at the floor, you notice the carvings were in fact a seal, covering the entire room. The energy emanating from it completely paralyzes your body as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
+&lt;p&gt;Before you lose consciousness, you manage to see a figure with bright amber eyes in front of you, it stares at you and tilt it&#39;s head, almost letting go a quiet laugh, before saying: &lt;/p&gt;
+&lt;&lt;diablo-texto-parrafos 0 0 1.7&gt;&gt;&quot;They say it´s the choices that makes us who we are... take a guess what that makes you.&quot;&lt;&lt;/diablo-texto-parrafos&gt;&gt;
+&lt;p&gt;The figure flicks it&#39;s fingers and you feel something pulling you down as your body disappears. &lt;/p&gt;
+&lt;p&gt;You take a big breath and blink, but once you open your eyes you&#39;re not on the same dark room anymore... &lt;/p&gt;
+&lt;p&gt;You&#39;re falling, but from where?&lt;/p&gt;
+&lt;p&gt;You look up at a sky you don&#39;t recognize, and a world beneath you that seems unfamiliar to you, but it&#39;s growing closer as you&#39;re about to hit the ground.&lt;/p&gt;
+&lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
+&lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
+&lt;p&gt;It feels familiar, and you feel the need to take a look, but you cannot keep your eyes open as you fall into a deep slumber.&lt;/p&gt;
 &lt;&lt;/magicpage&gt;&gt;
 &lt;div
 	class=&quot;choice-container&quot;
