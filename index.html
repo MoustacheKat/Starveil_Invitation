@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="Starveil" startnode="1" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="EAA6EC65-2E01-410F-84B3-2F1870E2B771" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* =========================================================
+	<tw-storydata name="Starveil" startnode="1" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="EAA6EC65-2E01-410F-84B3-2F1870E2B771" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* =========================================================
    FUENTES
    ========================================================= */
 
@@ -6608,7 +6608,7 @@ Somewhere, way beyond what you can see outside, there must be something familiar
 &lt;p class=&quot;alarm-line&quot;&gt;&lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/crash.mp3&quot;&gt;&gt;&lt;span style=&quot;font-size: 4em;&quot;&gt;&lt;span class=&quot;crash-text crash-large&quot;&gt;CRASH&lt;/span&gt;&lt;/span&gt;&lt;&lt;bigshake&gt;&gt;&lt;&lt;stopturbulence&gt;&gt;&lt;/p&gt;
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="12" name="WELCOME" tags="final" position="2400,2975" size="100,100">Pantalla final de ganaste
+</tw-passagedata><tw-passagedata pid="12" name="WELCOME" tags="final" position="2875,3175" size="200,100">Pantalla final de ganaste
 </tw-passagedata><tw-passagedata pid="13" name="Planet" tags="crt" position="450,1750" size="100,100">&lt;h1&gt;A planet&lt;/h1&gt;
 &lt;div id=&quot;science-dialogue&quot;&gt;
 &lt;p&gt;You start to wonder how far away home is, or if you&#39;ll make it back there from the void in front of you...&lt;/p&gt;
@@ -6909,8 +6909,33 @@ You know you&#39;ll be okay, you have to.&lt;/p&gt;
 	&lt;div class=&quot;option-magic&quot;&gt;
 		[[Check the alchemy equipment]]
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="Touch the light" tags="magico" position="3425,500" size="100,100">&lt;h1&gt;TOUCH THE LIGHT&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://imgur.com/a/LCUD6BY#bcPetpD&quot; &quot;light&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou can feel the mesmerizing pull of the light grow stronger once that you catch up to it, the light dissipates as you try to touch it leaving you in the darkness, you can´t shake the feeling of being observed as your mind is flooded by multiple voices whispering in a strange language that you do not recognize.&lt;/p&gt;
- &lt;p&gt;The voices start getting louder and louder as time passes.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="Check the alchemy equipment" tags="magico" position="2700,800" size="100,100">
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="37" name="Touch the light" tags="magico" position="3425,500" size="100,100">
+
+
+&lt;h1&gt;TOUCH THE LIGHT&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/bcPetpD.png&quot; &quot;light&quot; 0 -40&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou can feel the mesmerizing pull of the light grow stronger once you catch up to it. The light dissipates as you try to touch it, leaving you in the darkness. You can’t shake the feeling of being observed as your mind is flooded by multiple voices whispering &lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/whispers.mp3&quot;&gt;&gt; in a strange language that you do not recognize.&lt;/p&gt;
+&lt;p&gt;The voices start getting louder and louder as time passes.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+ &lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -40px;
+		--left-text-y: 0px;
+		--right-text-x: 60px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -50px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Ignore the voices]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Try to listen to the voices]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="38" name="Check the alchemy equipment" tags="magico" position="2700,800" size="100,100">
 
 
 &lt;h1&gt;Check the alchemy equipment&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/qsQlazb.png&quot; &quot;alchemy&quot; 0 -40&gt;&gt; &lt;p&gt;
@@ -7400,6 +7425,210 @@ When you try to pull it away it only tightens its grip, it&#39;s trying to pull 
 &lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
 &lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
 &lt;p&gt;It feels familiar, and you feel the need to take a look, but you cannot keep your eyes open as you fall into a deep slumber.&lt;/p&gt;
+&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="56" name="Ignore the voices" tags="magico" position="3375,725" size="100,100">&lt;h1&gt;Ignore the voices&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/Z2Kjvjm.png&quot; &quot;light&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;E&lt;/span&gt;ven though you try your best to ignore them, the voices grow so loud that you can´t even distinguish your own thoughts before you are able to do anything about it. &lt;/p&gt; &lt;p&gt;The whispers start turning into screams, your head begins to hurt so much that you fall to your knees as you are overwhelmed by all of it.&lt;/p&gt;
+&lt;p&gt;&lt;&lt;diablo-texto-parrafos 0 30 2&gt;&gt;Who said you were the one in control?&lt;&lt;/diablo-texto-parrafos&gt;&gt;&lt;/p&gt;&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -70px;
+		--left-text-y: 0px;
+		--right-text-x: 90px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[A distress call]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[A distress call]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="57" name="Try to listen to the voices" tags="magico" position="3625,725" size="100,100">&lt;h1&gt;DISTRESS CALL&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Z2Kjvjm.png&quot; &quot;light&quot; 0 0&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou&lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/whispers.mp3&quot;&gt;&gt; try your best listen to the voices, hoping to be able to understand if possible any of the things they are saying, after a while you are able to distinguish some words... Two very specific voices start to stand out as the rest start to fade into the background but not entirely.&lt;/p&gt; &lt;p&gt;The voices seem to be arguing between them by the point that you are able to understand what they are saying, from what little you can gather before all the voices suddenly stopped, it seemed to be some kind of distress call.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -20px;
+		--left-text-y: 0px;
+		--right-text-x: 90px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Try to analyze what happened]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Search for answers-&gt;Inspect the room]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="58" name="A distress call" tags="magico" position="3350,1400" size="100,100">&lt;h1&gt; A DISTRESS CALL &lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Z2Kjvjm.png&quot; &quot;light&quot; 0 20&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;A&lt;/span&gt;s you feel what seems to be blood coming out of your ears, you are able to distinguish some words... two very specific voices start to stand out as the rest start to fade into the background but not entirely.&lt;/p&gt; &lt;p&gt;The voices seem to be arguing between them by the point that you are able to understand what they are saying, from what little you can gather before the voices got cut off (due to the rest of the voices getting louder again), it seemed to be some kind of distress call.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -70px;
+		--left-text-y: 0px;
+		--right-text-x: 90px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Scream for help]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Scream for help]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="59" name="Scream for help" tags="magico" position="3450,1675" size="100,100">
+
+&lt;h1&gt; SCREAM FOR HELP&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/Z2Kjvjm.png&quot; &quot;light&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou scream as loud as you can, helplessly hoping that someone or something comes to you aid. Even though your vision start to blur you are able to notice a faint red glow coming from the floor underneat you.&lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -80px;
+		--left-text-y: 0px;
+		--right-text-x: 100px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;Loss of control]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;Loss of control]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="60" name="Loss of control" tags="magico" position="3600,2525" size="100,100">
+&lt;h1&gt;Something glows...&lt;/h1&gt;&lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/Faxbx37.png&quot; &quot;viejo diablo&quot; 0 30&gt;&gt;&lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;T&lt;/span&gt;he voices come to a sudden halt as a reddish light begins to emanate from below you; you´re not sure what it is but it seems to cover the entire room. The energy emanating from it completely paralyzes your body as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
+&lt;p&gt;Before you lose consciousness, you manage to see a figure with bright amber eyes in front of you, it stares at you and tilt it&#39;s head, you notice it´s lips move but you are not able to hear what it says due to the ringing in your ears.&lt;/p&gt;
+&lt;p&gt;The figure flicks it&#39;s fingers and you feel something pulling you down as your body disappears. &lt;/p&gt;
+&lt;p&gt;You take a big breath and blink, but once you open your eyes you&#39;re not on the same dark room anymore... &lt;/p&gt;
+&lt;p&gt;You&#39;re falling, but from where?&lt;/p&gt;
+&lt;p&gt;You look up at a sky you don&#39;t recognize, and a world beneath you that seems unfamiliar to you, but it&#39;s growing closer as you&#39;re about to hit the ground.&lt;/p&gt;
+&lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
+&lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
+&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -100px;
+		--left-text-y: 0px;
+		--right-text-x: 130px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[. . .-&gt;WELCOME]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="61" name="Try to analyze what happened" tags="magico" position="3650,1025" size="100,100">&lt;h1&gt;DEEP IN THOUGHT&lt;/h1&gt;&lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/Z2Kjvjm.png&quot; &quot;light&quot; 40 40&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou are still confused about what you just experienced, what was that message? &lt;/p&gt; &lt;p&gt;Where did it come from?&lt;/p&gt;
+&lt;p&gt;How were you able to hear it?&lt;/p&gt;
+&lt;p&gt;How did you even get to this place to begin with?&lt;/p&gt;
+&lt;p&gt;It all happened so fast that you just came to realize you might be miles from home, you could not even be in the same planet at all anymore!&lt;/p&gt;
+&lt;p&gt;You start going hastily through a pile of notes that are on top of a desk, surely there must be something there that can make sense of any of this.&lt;/p&gt;
+&lt;p&gt;The silence is suddenly broken by the sound of shattered glass&lt;&lt;playsound &quot;https://raw.githubusercontent.com/MoustacheKat/Starveil_Invitation/main/Sounds/Glass-shatters.mp3&quot;&gt;&gt;, you peek around the edge of the desk and see a broken bottle with some weird almost metallic blue liquid coming out of it, you cant help but have a bad feeling.&lt;/p&gt;&lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -80px;
+		--left-text-y: 0px;
+		--right-text-x: 120px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[RUN]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[RUN]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="62" name="RUN" tags="magico" position="3800,1575" size="100,100">&lt;h1&gt;RUN&lt;/h1&gt; &lt;&lt;magicpage &quot;right&quot; &quot;https://i.imgur.com/RHLq6cT.png&quot; &quot;light&quot; 30 30&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;Y&lt;/span&gt;ou stare at the liquid as it starts growing before your eyes, suddenly the liquid creature charges at you, you dodge it and start running towards the hallway from which you entered the room, but you crash with what seems to be a barrier of some sorts and fall down. &lt;/p&gt; &lt;p&gt;You turn around and see that the creature has already catched up with you, just when it grabbed you by the ankle it froze in place for a couple of seconds and went back to just being a splash of liquid on the floor. &lt;/p&gt;
+&lt;p&gt;You try to catch your breath when you notice a figure at the other end of the room, you try to get up but your body doesn´t respond, you blink and notice that you are now at the center of the room and there´s a red glow coming from the floor underneath you &lt;/p&gt; &lt;&lt;/magicpage&gt;&gt;
+&lt;div
+	class=&quot;choice-container&quot;
+	style=&quot;
+		--left-text-x: -80px;
+		--left-text-y: 0px;
+		--right-text-x: 100px;
+		--right-text-y: 0px;
+
+		--left-arrow-x: 0px;
+		--left-arrow-y: 0px;
+		--right-arrow-x: -20px;
+		--right-arrow-y: 0px;
+	&quot;
+&gt;
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;The call]]
+	&lt;/div&gt;
+
+	&lt;div class=&quot;option-magic&quot;&gt;
+		[[Something glows-&gt;The call]]
+	&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="63" name="The call" tags="magico" position="3950,2525" size="100,100">&lt;h1&gt;Something glows...&lt;/h1&gt; &lt;&lt;magicpage &quot;left&quot; &quot;https://i.imgur.com/Faxbx37.png&quot; &quot;viejo diablo&quot;&gt;&gt; &lt;p&gt;&lt;span class=&quot;magic-drop-cap&quot;&gt;A&lt;/span&gt; reddish light begins to emanate from below you; when you look down at the floor, you notice the carvings covering the entire room. The energy emanating from it completely paralyzes your body as it engulfs you; it begins to drag you along, and you feel yourself disintegrating slowly.&lt;/p&gt;
+&lt;p&gt;Before you lose consciousness, you manage to get a better close at the figure from before, it´s bright amber eyes in front of you, it stares at you and tilt it&#39;s head before saying:&lt;/p&gt;
+&lt;&lt;diablo-texto-parrafos 0 0 1.7&gt;&gt;&quot;This is your story; you can die and be free of pain, or live and fight your sorrows – either way, the choice is yours to take.&quot;&lt;&lt;/diablo-texto-parrafos&gt;&gt;
+&lt;p&gt;The figure flicks it&#39;s fingers and you feel something pulling you down as your body disappears. &lt;/p&gt;
+&lt;p&gt;You take a big breath and blink, but once you open your eyes you&#39;re not on the same dark room anymore... &lt;/p&gt;
+&lt;p&gt;You&#39;re falling, but from where?&lt;/p&gt;
+&lt;p&gt;You look up at a sky you don&#39;t recognize, and a world beneath you that seems unfamiliar to you, but it&#39;s growing closer as you&#39;re about to hit the ground.&lt;/p&gt;
+&lt;p&gt;You close your eyes and brace yourself.&lt;/p&gt;
+&lt;p&gt;As your consciousness and vision fade in and out, you can hear a voice, and slow but firm steps approaching you...&lt;/p&gt;
 &lt;&lt;/magicpage&gt;&gt;
 &lt;div
 	class=&quot;choice-container&quot;
